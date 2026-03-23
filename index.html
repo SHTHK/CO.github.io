@@ -212,7 +212,7 @@
       gap: 24px;
     }
 
-    /* 캐릭터 카드 - 마법소녀 포토카드 느낌 */
+    /* 캐릭터 카드 */
     .char-card {
       position: relative;
       background: #fff;
@@ -263,7 +263,6 @@
       border: 2px dashed #ffb3c6;
     }
 
-    /* 절대 건드리지 않은 이미지 영역 */
     .char-thumb img,
     .profile-visual img {
       width: 100%;
@@ -337,42 +336,36 @@
       justify-content: center;
     }
 
-    /* 변신 버튼 */
+    /* 변신 버튼 - 단색 처리 */
     .transform-btn {
       width: 100%;
       margin-top: 20px;
       padding: 18px 16px;
       border-radius: 20px;
-      background: linear-gradient(45deg, var(--point), #ff85a2, var(--accent), var(--point));
-      background-size: 300% 300%;
-      animation: magicGlow 3s ease infinite;
+      background: var(--point);
       color: #fff;
       font-weight: 900;
       font-size: 1.2rem;
       letter-spacing: 0.1em;
       border: 3px solid #fff;
-      box-shadow: 0 8px 24px rgba(255, 84, 154, 0.5);
+      box-shadow: 0 8px 24px rgba(255, 84, 154, 0.4);
       text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
+      transition: all 0.2s ease;
     }
     .transform-btn:hover {
       transform: scale(1.03);
+      background: var(--point-dark);
     }
     .transform-btn:active {
       transform: scale(0.95);
     }
 
-    @keyframes magicGlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     .transform-btn.active {
-      background: linear-gradient(45deg, var(--magic-blue), #b3e6ff, #ffccff, var(--magic-blue));
-      background-size: 300% 300%;
-      box-shadow: 0 8px 24px rgba(102, 204, 255, 0.5);
-      color: #fff;
+      background: var(--magic-blue);
+      box-shadow: 0 8px 24px rgba(102, 204, 255, 0.4);
+    }
+    .transform-btn.active:hover {
+      background: #3399ff;
     }
 
     .profile-detail-card {
@@ -421,13 +414,13 @@
       padding-top: 4px;
     }
 
-    /* 가이드 섹션 스타일 */
+    /* 가이드(QnA) 섹션 */
     .guide-wrap {
       display: grid;
-      gap: 24px;
+      gap: 30px;
     }
-
-    .guide-title {
+    
+    .section-title {
       margin: 0;
       font-size: 1.6rem;
       color: var(--point-dark);
@@ -445,15 +438,73 @@
       background: #fff;
       border: 3px solid #ffd1dc;
       border-radius: 24px;
+      overflow: hidden;
       box-shadow: 0 4px 0 #ffe6f2;
-      transition: border-color 0.2s ease;
+      transition: all 0.2s ease;
     }
-
     .guide-item:hover {
       border-color: var(--point);
     }
 
-    .guide-content {
+    .guide-question {
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 24px;
+      text-align: left;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--point-dark);
+      background: transparent;
+    }
+
+    .guide-question span:first-child::before {
+      content: "Q. ";
+      color: var(--point);
+    }
+
+    .guide-question span:last-child {
+      font-size: 1.2rem;
+      color: var(--point);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      background: #ffe6f2;
+      border-radius: 50%;
+      width: 30px; height: 30px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .guide-item.open .guide-question span:last-child {
+      transform: rotate(90deg);
+      background: var(--point);
+      color: #fff;
+    }
+
+    .guide-answer {
+      display: none;
+      padding: 0 24px 24px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    
+    .guide-item.open .guide-answer {
+      display: block;
+      animation: fadeInDown 0.3s ease;
+    }
+
+    /* 참고하면 좋은 것들 섹션 */
+    .reference-list {
+      display: grid;
+      gap: 16px;
+    }
+    .reference-item {
+      background: #fff;
+      border: 3px solid #ffd1dc;
+      border-radius: 24px;
+      box-shadow: 0 4px 0 #ffe6f2;
       padding: 24px;
       line-height: 1.8;
       white-space: pre-wrap;
@@ -463,61 +514,28 @@
       word-break: keep-all;
     }
 
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 1200px) {
-      .team-row {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-      .profile-page-inner {
-        grid-template-columns: 1fr;
-      }
-      .profile-side {
-        position: static;
-      }
+      .team-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .profile-page-inner { grid-template-columns: 1fr; }
+      .profile-side { position: static; }
     }
 
     @media (max-width: 760px) {
-      .app {
-        padding: 16px;
-      }
-      .folder {
-        border-radius: 24px;
-      }
-      .folder::before {
-        width: 20px;
-      }
-      .titlebar {
-        padding: 24px 20px 0px 30px;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-      .content {
-        padding: 0 16px 16px 30px;
-      }
-      .paper {
-        padding: 24px 20px;
-        border-radius: 0 16px 16px 16px;
-      }
-      .team-row {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 16px;
-      }
-      .detail-item {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        border-bottom: none;
-        background: #fdf5ff;
-        padding: 16px;
-        border-radius: 16px;
-      }
-      .detail-label {
-        align-self: flex-start;
-        transform: none;
-      }
-      .tab-btn {
-        min-width: 110px;
-        padding: 12px 16px 16px;
-        font-size: 1rem;
-      }
+      .app { padding: 16px; }
+      .folder { border-radius: 24px; }
+      .folder::before { width: 20px; }
+      .titlebar { padding: 24px 20px 0px 30px; align-items: flex-start; flex-direction: column; }
+      .content { padding: 0 16px 16px 30px; }
+      .paper { padding: 24px 20px; border-radius: 0 16px 16px 16px; }
+      .team-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+      .detail-item { grid-template-columns: 1fr; gap: 8px; border-bottom: none; background: #fdf5ff; padding: 16px; border-radius: 16px; }
+      .detail-label { align-self: flex-start; transform: none; }
+      .tab-btn { min-width: 110px; padding: 12px 16px 16px; font-size: 1rem; }
     }
   </style>
 </head>
@@ -562,8 +580,11 @@
         <section class="page" id="guidePage">
           <div class="paper">
             <div class="guide-wrap">
-              <h2 class="guide-title">참고하면 좋은 것들</h2>
+              <h2 class="section-title">자주 묻는 질문</h2>
               <div class="guide-list" id="guideList"></div>
+
+              <h2 class="section-title" style="margin-top: 20px;">참고하면 좋은 것들</h2>
+              <div class="reference-list" id="referenceList"></div>
             </div>
           </div>
         </section>
@@ -576,9 +597,8 @@
       ==========================
       수정이 쉬운 구간
       1) characterData 안의 텍스트/이미지 경로를 바꾸면 캐릭터 정보가 바뀝니다.
-      2) guideItems 배열에 텍스트를 추가하거나 수정하면 '참고하면 좋은 것들' 페이지에 반영됩니다.
-      3) 이미지는 같은 저장소 안에 넣고 상대 경로로 연결하면 됩니다.
-         예시: "images/char01_thumb.png"
+      2) qnaItems: 클릭하면 펼쳐지는 질문과 답변을 추가/수정하세요.
+      3) referenceItems: 맨 밑에 길게 보여줄 참고사항을 추가/수정하세요.
       ==========================
     */
 
@@ -596,85 +616,40 @@
     }
 
     const characterData = [
+      { id: 1, team: 1, name: "캐릭터 01", gender: "여", age: "17", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 01"), body: makePlaceholder("전신 01", "portrait"), transform: { transformName: "변신명 01", name: "변신 후 이름 01", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 01", "portrait") } },
+      { id: 2, team: 1, name: "캐릭터 02", gender: "남", age: "18", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 02"), body: makePlaceholder("전신 02", "portrait"), transform: { transformName: "변신명 02", name: "변신 후 이름 02", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 02", "portrait") } },
+      { id: 3, team: 1, name: "캐릭터 03", gender: "여", age: "17", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 03"), body: makePlaceholder("전신 03", "portrait"), transform: { transformName: "변신명 03", name: "변신 후 이름 03", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 03", "portrait") } },
+      { id: 4, team: 1, name: "캐릭터 04", gender: "남", age: "18", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 04"), body: makePlaceholder("전신 04", "portrait"), transform: { transformName: "변신명 04", name: "변신 후 이름 04", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 04", "portrait") } },
+      { id: 5, team: 1, name: "캐릭터 05", gender: "여", age: "16", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 05"), body: makePlaceholder("전신 05", "portrait"), transform: { transformName: "변신명 05", name: "변신 후 이름 05", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 05", "portrait") } },
+      { id: 6, team: 1, name: "캐릭터 06", gender: "남", age: "17", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 06"), body: makePlaceholder("전신 06", "portrait"), transform: { transformName: "변신명 06", name: "변신 후 이름 06", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 06", "portrait") } },
+      { id: 7, team: 2, name: "캐릭터 07", gender: "여", age: "17", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 07"), body: makePlaceholder("전신 07", "portrait"), transform: { transformName: "변신명 07", name: "변신 후 이름 07", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 07", "portrait") } },
+      { id: 8, team: 2, name: "캐릭터 08", gender: "남", age: "18", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 08"), body: makePlaceholder("전신 08", "portrait"), transform: { transformName: "변신명 08", name: "변신 후 이름 08", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 08", "portrait") } },
+      { id: 9, team: 2, name: "캐릭터 09", gender: "여", age: "16", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 09"), body: makePlaceholder("전신 09", "portrait"), transform: { transformName: "변신명 09", name: "변신 후 이름 09", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 09", "portrait") } },
+      { id: 10, team: 2, name: "캐릭터 10", gender: "남", age: "17", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 10"), body: makePlaceholder("전신 10", "portrait"), transform: { transformName: "변신명 10", name: "변신 후 이름 10", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 10", "portrait") } },
+      { id: 11, team: 2, name: "캐릭터 11", gender: "여", age: "18", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 11"), body: makePlaceholder("전신 11", "portrait"), transform: { transformName: "변신명 11", name: "변신 후 이름 11", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 11", "portrait") } },
+      { id: 12, team: 2, name: "캐릭터 12", gender: "남", age: "17", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 12"), body: makePlaceholder("전신 12", "portrait"), transform: { transformName: "변신명 12", name: "변신 후 이름 12", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 12", "portrait") } }
+    ];
+
+    // QnA 데이터 (누르면 펼쳐짐)
+    const qnaItems = [
       {
-        id: 1, team: 1, name: "캐릭터 01", gender: "여", age: "17",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 01"), body: makePlaceholder("전신 01", "portrait"),
-        transform: { transformName: "변신명 01", name: "변신 후 이름 01", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 01", "portrait") }
+        question: "이 홈페이지는 어떻게 보나요?",
+        answer: "첫번째 인덱스에서는 캐릭터를 고를 수 있고, 두번째 인덱스에서는 플레이 가이드를 볼 수 있습니다."
       },
       {
-        id: 2, team: 1, name: "캐릭터 02", gender: "남", age: "18",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 02"), body: makePlaceholder("전신 02", "portrait"),
-        transform: { transformName: "변신명 02", name: "변신 후 이름 02", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 02", "portrait") }
+        question: "캐릭터 프로필은 어디서 열 수 있나요?",
+        answer: "캐릭터 선택 화면에서 원하는 캐릭터의 사진이나 이름이 들어간 카드를 누르면 전체 페이지 프로필 화면으로 이동합니다."
       },
       {
-        id: 3, team: 1, name: "캐릭터 03", gender: "여", age: "17",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 03"), body: makePlaceholder("전신 03", "portrait"),
-        transform: { transformName: "변신명 03", name: "변신 후 이름 03", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 03", "portrait") }
-      },
-      {
-        id: 4, team: 1, name: "캐릭터 04", gender: "남", age: "18",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 04"), body: makePlaceholder("전신 04", "portrait"),
-        transform: { transformName: "변신명 04", name: "변신 후 이름 04", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 04", "portrait") }
-      },
-      {
-        id: 5, team: 1, name: "캐릭터 05", gender: "여", age: "16",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 05"), body: makePlaceholder("전신 05", "portrait"),
-        transform: { transformName: "변신명 05", name: "변신 후 이름 05", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 05", "portrait") }
-      },
-      {
-        id: 6, team: 1, name: "캐릭터 06", gender: "남", age: "17",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 06"), body: makePlaceholder("전신 06", "portrait"),
-        transform: { transformName: "변신명 06", name: "변신 후 이름 06", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 06", "portrait") }
-      },
-      {
-        id: 7, team: 2, name: "캐릭터 07", gender: "여", age: "17",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 07"), body: makePlaceholder("전신 07", "portrait"),
-        transform: { transformName: "변신명 07", name: "변신 후 이름 07", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 07", "portrait") }
-      },
-      {
-        id: 8, team: 2, name: "캐릭터 08", gender: "남", age: "18",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 08"), body: makePlaceholder("전신 08", "portrait"),
-        transform: { transformName: "변신명 08", name: "변신 후 이름 08", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 08", "portrait") }
-      },
-      {
-        id: 9, team: 2, name: "캐릭터 09", gender: "여", age: "16",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 09"), body: makePlaceholder("전신 09", "portrait"),
-        transform: { transformName: "변신명 09", name: "변신 후 이름 09", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 09", "portrait") }
-      },
-      {
-        id: 10, team: 2, name: "캐릭터 10", gender: "남", age: "17",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 10"), body: makePlaceholder("전신 10", "portrait"),
-        transform: { transformName: "변신명 10", name: "변신 후 이름 10", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 10", "portrait") }
-      },
-      {
-        id: 11, team: 2, name: "캐릭터 11", gender: "여", age: "18",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 11"), body: makePlaceholder("전신 11", "portrait"),
-        transform: { transformName: "변신명 11", name: "변신 후 이름 11", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 11", "portrait") }
-      },
-      {
-        id: 12, team: 2, name: "캐릭터 12", gender: "남", age: "17",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 12"), body: makePlaceholder("전신 12", "portrait"),
-        transform: { transformName: "변신명 12", name: "변신 후 이름 12", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 12", "portrait") }
+        question: "변신 버튼은 어떤 기능인가요?",
+        answer: "프로필 화면의 변신! 버튼을 누르면 변신 버전 프로필로 바뀌고, 다시 누르면 기본 상태로 돌아옵니다."
       }
     ];
 
-    // 가이드 항목 데이터를 배열 형태로 입력할 수 있습니다.
-    const guideItems = [
-      "첫번째 인덱스에서는 원하는 캐릭터의 사진이나 이름이 들어간 카드를 눌러 전체 페이지 프로필 화면으로 이동할 수 있습니다.",
-      "프로필 화면의 '변신!' 버튼을 누르면 캐릭터가 변신 버전 프로필로 바뀌고, 다시 누르면 기본 상태로 돌아옵니다.",
-      "이곳에 동아리원들이 알아야 할 추가적인 참고 사항이나 규칙 등을 자유롭게 길게 적을 수 있습니다.\n(줄바꿈도 이렇게 자연스럽게 적용됩니다.)"
+    // 참고하면 좋은 것들 데이터 (맨 아래에 펼쳐진 채로 보임)
+    const referenceItems = [
+      "이곳에 동아리원들이 알아야 할 추가적인 참고 사항이나 규칙 등을 자유롭게 길게 적을 수 있습니다.\n(줄바꿈도 이렇게 자연스럽게 적용됩니다.)",
+      "새로운 참고 항목을 추가하고 싶다면 코드의 referenceItems 배열에 내용을 추가해 주세요."
     ];
 
     const pageEls = document.querySelectorAll(".page");
@@ -684,6 +659,7 @@
     const profileBodyImage = document.getElementById("profileBodyImage");
     const profileDetailList = document.getElementById("profileDetailList");
     const guideList = document.getElementById("guideList");
+    const referenceList = document.getElementById("referenceList");
 
     let selectedCharacterId = null;
     let isTransformMode = false;
@@ -805,11 +781,28 @@
     }
 
     function renderGuide() {
-      guideList.innerHTML = guideItems.map(content => `
+      // 자주 묻는 질문 렌더링
+      guideList.innerHTML = qnaItems.map((item) => `
         <div class="guide-item">
-          <div class="guide-content">${content}</div>
+          <button type="button" class="guide-question" onclick="toggleGuideItem(this)">
+            <span>${item.question}</span>
+            <span>▶</span>
+          </button>
+          <div class="guide-answer">${item.answer}</div>
         </div>
       `).join("");
+
+      // 참고하면 좋은 것들 렌더링
+      referenceList.innerHTML = referenceItems.map(content => `
+        <div class="reference-item">
+          ${content}
+        </div>
+      `).join("");
+    }
+
+    function toggleGuideItem(buttonEl) {
+      const item = buttonEl.closest(".guide-item");
+      item.classList.toggle("open");
     }
 
     tabBtns.forEach(btn => {
@@ -832,6 +825,7 @@
     }
 
     window.openProfile = openProfile;
+    window.toggleGuideItem = toggleGuideItem;
   </script>
 </body>
 </html>
