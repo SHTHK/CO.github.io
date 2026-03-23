@@ -107,6 +107,8 @@
         1px -1px 0px #fff,
         -1px 1px 0px #fff,
         1px 1px 0px #fff;
+      /* 제목 단어 단위로 예쁘게 줄바꿈 */
+      word-break: keep-all; 
     }
 
     .index-tabs {
@@ -417,16 +419,17 @@
       transform: rotate(-2deg);
     }
 
+    /* 긴 글자와 링크 줄바꿈 처리 */
     .detail-value {
       min-width: 0;
       white-space: pre-wrap;
       line-height: 1.8;
-      word-break: keep-all;
       font-weight: 700;
       padding-top: 4px;
+      word-break: keep-all; 
+      overflow-wrap: anywhere; 
     }
 
-    /* 가이드(QnA) 섹션 */
     .guide-wrap {
       display: grid;
       gap: 30px;
@@ -493,6 +496,7 @@
       color: #fff;
     }
 
+    /* 긴 글자와 링크 줄바꿈 처리 */
     .guide-answer {
       display: none;
       padding: 0 24px 24px;
@@ -500,6 +504,8 @@
       white-space: pre-wrap;
       color: var(--ink);
       font-weight: 700;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
     }
     
     .guide-item.open .guide-answer {
@@ -507,7 +513,7 @@
       animation: fadeInDown 0.3s ease;
     }
 
-    /* 참고하면 좋은 것들 섹션 */
+    /* 긴 글자와 링크 줄바꿈 처리 */
     .reference-list {
       display: grid;
       gap: 16px;
@@ -524,6 +530,7 @@
       font-weight: 700;
       font-size: 1.05rem;
       word-break: keep-all;
+      overflow-wrap: anywhere;
     }
 
     @keyframes fadeInDown {
@@ -537,11 +544,23 @@
       .profile-side { position: static; }
     }
 
+    /* 모바일 환경 대응 세밀 조정 */
     @media (max-width: 760px) {
       .app { padding: 16px; }
       .folder { border-radius: 24px; }
       .folder::before { width: 20px; }
-      .titlebar { padding: 24px 20px 0px 30px; align-items: flex-start; flex-direction: column; }
+      
+      .titlebar { 
+        padding: 24px 20px 0px 30px; 
+        align-items: flex-start; 
+        flex-direction: column; 
+      }
+      
+      /* 모바일에서 제목 크기 조절 */
+      h1 {
+        font-size: 1.5rem; 
+      }
+
       .content { padding: 0 16px 16px 30px; }
       .paper { padding: 24px 20px; border-radius: 0 16px 16px 16px; }
       .team-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
