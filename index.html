@@ -596,7 +596,7 @@
               <h2 class="section-title">문제가 생겼어요!</h2>
               <div class="guide-list" id="guideList"></div>
 
-              <h2 class="section-title" style="margin-top: 10px;">참고하면 좋은 것들</h2>
+              <h2 class="section-title" style="margin-top: 10px;">이미지 코드 변경법</h2>
               <div class="reference-list" id="referenceList"></div>
             </div>
           </div>
@@ -858,8 +858,11 @@
     ];
 
     const referenceItems = [
-      "이곳에 동아리원들이 알아야 할 추가적인 참고 사항이나 규칙 등을 자유롭게 적을 수 있습니다.",
-      "새로운 참고 항목을 추가하고 싶다면 referenceItems 배열에 내용을 추가하세요."
+      "이미지 코드는 (인물+상태+감정) 조합으로 이루어져 있습니다. 예를 들어, 강혁이 변신하지 않은 상태로 웃는 이미지는 KJB2입니다. 이미지가 안 나오거나 다른 캐릭터의 이미지가 나올 때 아래의 코드 목록을 참고하여 이 코드 조합을 고쳐주시면 됩니다.",
+      "인물코드는 다음과 같습니다.<br>KH=이강혁<br>HN=유하나<br>YW=박윤우<br>ES=최은설<br>WJ=한우주<br>PB=페블<br>SY=민서율<br>SA=주시아<br>KJ=최강준<br>HJ=최한준<br>DS=이다솜<br>MD=몰드",
+      "상태 코드는 다음과 같습니다.<br>A=변신한 상태<br>B=변신하지 않은 상태",
+      "감정 코드는 다음과 같습니다.<br>1=디폴트<br>2=웃음<br>3=화남<br>4=놀람<br>5=슬픔<br>6=수줍음(썸/연애 상황)<br>7=포옹/키스<br>8=전투",
+      "페블과 몰드는 변신 전에 2~8 감정 코드가 존재하지 않습니다.<br>모든 캐릭터는 변신 전에 8 감정 코드가 존재하지 않습니다."
     ];
 
     const pageEls = document.querySelectorAll(".page");
