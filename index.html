@@ -225,7 +225,48 @@
 
     .character-grid-wrap {
       display: grid;
-      gap: 24px;
+      gap: 30px;
+    }
+
+    .team-section {
+      display: grid;
+      gap: 16px;
+      padding: 18px 18px 20px;
+      border: 2px dashed var(--card-border);
+      border-radius: 24px;
+      background: #fffafe;
+    }
+
+    .team-section + .team-section {
+      margin-top: 6px;
+    }
+
+    .team-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f7d3e3;
+    }
+
+    .team-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 84px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--point);
+      color: #fff;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+    }
+
+    .team-name {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--point-dark);
+      letter-spacing: -0.02em;
     }
 
     .team-row {
@@ -552,6 +593,10 @@
         left: 18px;
       }
 
+      .team-section {
+        padding: 14px;
+      }
+
       .team-row {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -653,6 +698,7 @@
       {
         id: 1,
         team: 1,
+        teamName: "GLOSS",
         name: "이강혁",
         gender: "남",
         age: "19",
@@ -670,6 +716,7 @@
       {
         id: 2,
         team: 1,
+        teamName: "GLOSS",
         name: "유하나",
         gender: "여",
         age: "18",
@@ -687,6 +734,7 @@
       {
         id: 3,
         team: 1,
+        teamName: "GLOSS",
         name: "캐릭터 03",
         gender: "여",
         age: "17",
@@ -704,6 +752,7 @@
       {
         id: 4,
         team: 1,
+        teamName: "GLOSS",
         name: "캐릭터 04",
         gender: "남",
         age: "18",
@@ -721,6 +770,7 @@
       {
         id: 5,
         team: 1,
+        teamName: "GLOSS",
         name: "캐릭터 05",
         gender: "여",
         age: "16",
@@ -738,6 +788,7 @@
       {
         id: 6,
         team: 1,
+        teamName: "GLOSS",
         name: "캐릭터 06",
         gender: "남",
         age: "17",
@@ -755,6 +806,7 @@
       {
         id: 7,
         team: 2,
+        teamName: "FANG",
         name: "캐릭터 07",
         gender: "여",
         age: "17",
@@ -772,6 +824,7 @@
       {
         id: 8,
         team: 2,
+        teamName: "FANG",
         name: "캐릭터 08",
         gender: "남",
         age: "18",
@@ -789,6 +842,7 @@
       {
         id: 9,
         team: 2,
+        teamName: "FANG",
         name: "캐릭터 09",
         gender: "여",
         age: "16",
@@ -806,6 +860,7 @@
       {
         id: 10,
         team: 2,
+        teamName: "FANG",
         name: "캐릭터 10",
         gender: "남",
         age: "17",
@@ -823,6 +878,7 @@
       {
         id: 11,
         team: 2,
+        teamName: "FANG",
         name: "캐릭터 11",
         gender: "여",
         age: "18",
@@ -840,6 +896,7 @@
       {
         id: 12,
         team: 2,
+        teamName: "FANG",
         name: "캐릭터 12",
         gender: "남",
         age: "17",
@@ -943,22 +1000,35 @@
       showPage("charactersPage");
     }
 
+    function renderTeamSection(teamLabel, teamName, teamMembers) {
+      const cards = teamMembers.map(character => `
+        <button class="char-card" type="button" onclick="openProfile(${character.id})">
+          <div class="char-thumb">
+            <img src="${character.thumb}" alt="${character.name} 프로필 사진" />
+          </div>
+          <div class="char-name">${character.name}</div>
+        </button>
+      `).join("");
+
+      return `
+        <section class="team-section">
+          <div class="team-heading">
+            <span class="team-badge">${teamLabel}</span>
+            <span class="team-name">${teamName}</span>
+          </div>
+          <div class="team-row">${cards}</div>
+        </section>
+      `;
+    }
+
     function renderCharacters() {
       const team1 = characterData.filter(item => item.team === 1);
       const team2 = characterData.filter(item => item.team === 2);
 
-      characterGridWrap.innerHTML = [team1, team2].map(team => {
-        const cards = team.map(character => `
-          <button class="char-card" type="button" onclick="openProfile(${character.id})">
-            <div class="char-thumb">
-              <img src="${character.thumb}" alt="${character.name} 프로필 사진" />
-            </div>
-            <div class="char-name">${character.name}</div>
-          </button>
-        `).join("");
-
-        return `<div class="team-row">${cards}</div>`;
-      }).join("");
+      characterGridWrap.innerHTML = [
+        renderTeamSection("1팀", "GLOSS", team1),
+        renderTeamSection("2팀", "FANG", team2)
+      ].join("");
     }
 
     function openProfile(id) {
