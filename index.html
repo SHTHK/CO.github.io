@@ -6,17 +6,16 @@
   <title>우리 동아리 정상운영 합니다!</title>
   <style>
     :root {
-      /* 마법소녀/소년 느낌의 통통 튀는 파스텔 컬러 팔레트 */
       --bg-gradient: linear-gradient(135deg, #ffe6f2 0%, #e6e6ff 50%, #e6f9ff 100%);
-      --folder-cover: #ffd1dc; /* 딸기우유 핑크 */
-      --folder-border: #ff85a2; /* 진한 핑크 테두리 */
+      --folder-cover: #ffd1dc;
+      --folder-border: #ff85a2;
       --paper: #ffffff;
-      --line: #ffe0eb; /* 귀여운 핑크색 노트 선 */
-      --ink: #5c3a6b; /* 너무 까맣지 않은 부드러운 보라빛 텍스트 */
-      --point: #ff549a; /* 마법의 핫핑크 */
+      --line: #ffe0eb;
+      --ink: #5c3a6b;
+      --point: #ff549a;
       --point-dark: #cc0066;
-      --accent: #ffcc00; /* 반짝이는 별빛 옐로우 */
-      --magic-blue: #66ccff; /* 마법소년 느낌 스카이블루 */
+      --accent: #ffcc00;
+      --magic-blue: #66ccff;
       --shadow: 0 16px 40px rgba(255, 102, 178, 0.25);
       --radius: 32px;
       --radius-sm: 20px;
@@ -34,7 +33,6 @@
       font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Comic Sans MS", sans-serif;
       color: var(--ink);
       background: var(--bg-gradient);
-      /* 귀여운 땡땡이 배경 패턴 추가 */
       background-image: radial-gradient(#fff 15%, transparent 16%), radial-gradient(#fff 15%, transparent 16%);
       background-size: 30px 30px;
       background-position: 0 0, 15px 15px;
@@ -58,7 +56,6 @@
       align-items: stretch;
     }
 
-    /* 서류철(바인더) 외곽 */
     .folder {
       position: relative;
       width: min(1400px, 100%);
@@ -67,12 +64,11 @@
       border: 4px solid var(--folder-border);
       border-radius: 36px;
       box-shadow: 
-        inset 0 0 0 8px rgba(255, 255, 255, 0.5), /* 바인더 안쪽 테두리 */
+        inset 0 0 0 8px rgba(255, 255, 255, 0.5),
         var(--shadow);
       overflow: hidden;
     }
 
-    /* 서류철 링 느낌 */
     .folder::before {
       content: "";
       position: absolute;
@@ -90,10 +86,10 @@
       top: 0;
       z-index: 20;
       min-height: var(--header-h);
-      padding: 30px 40px 0px 60px; /* 왼쪽 바인더 링 피해서 패딩 */
+      padding: 30px 40px 0px 60px;
       background: transparent;
       display: flex;
-      align-items: flex-end; /* 탭이 바닥에 붙도록 */
+      align-items: flex-end;
       justify-content: space-between;
       gap: 20px;
     }
@@ -119,10 +115,9 @@
       flex-wrap: wrap;
       justify-content: flex-end;
       position: relative;
-      top: 4px; /* 종이와 겹치게 */
+      top: 4px;
     }
 
-    /* 서류철 인덱스 탭 디자인 */
     .tab-btn {
       min-width: 140px;
       padding: 16px 20px 20px;
@@ -171,7 +166,6 @@
       100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    /* 다이어리 속지 느낌 */
     .paper {
       position: relative;
       background: 
@@ -206,7 +200,6 @@
       gap: 30px;
     }
 
-    /* 팀별 물리적 분리 박스 */
     .team-section {
       background: rgba(255, 255, 255, 0.6);
       border: 3px dashed #ffb3c6;
@@ -234,7 +227,6 @@
       gap: 20px;
     }
 
-    /* 캐릭터 카드 - 마법소녀 포토카드 느낌 & 노란별 호버 효과 */
     .char-card {
       position: relative;
       background: #fff;
@@ -358,7 +350,6 @@
       justify-content: center;
     }
 
-    /* 대망의 변신 버튼 - 단색 디자인 */
     .transform-btn {
       width: 100%;
       margin-top: 20px;
@@ -752,7 +743,7 @@
           transformName: "마이트 레드",
           personality: "쾌남. 단순하고 의리있다.",
           feature: "최강준의 형. 그저 강준이 잘못된 일을 할까봐 걱정돼서 따라왔다. 주변인들을 잘 챙겨준다.",
-          body: 'HJ_wl_coyboyshot.png'
+          body: 'HJA_wl_coyboyshot.png'
         }
       },
       {
@@ -980,7 +971,7 @@
             mainName: character.transform.transformName,
             gender: character.gender,
             age: character.age,
-            personality: character.transform.personality, // 성격 추가!
+            personality: character.transform.personality,
             feature: character.transform.feature,
             body: character.transform.body
           }
@@ -989,7 +980,7 @@
             mainName: character.name,
             gender: character.gender,
             age: character.age,
-            personality: character.personality, // 성격 추가!
+            personality: character.personality,
             feature: character.feature,
             body: character.body
           };
@@ -997,12 +988,11 @@
       profileBodyImage.src = current.body;
       profileBodyImage.alt = `${current.mainName} 전신 사진`;
 
-      // '외관(외모)'은 제외하고, '성격'과 '특징'은 포함된 리스트
       const detailRows = [
         [current.label, current.mainName],
         ["성별", current.gender],
         ["나이", current.age],
-        ["성격", current.personality], // 화면에 성격이 나옵니다
+        ["성격", current.personality],
         ["특징", current.feature]
       ];
 
@@ -1014,7 +1004,7 @@
       `).join("");
 
       transformBtn.classList.toggle("active", isTransformMode);
-      transformBtn.textContent = isTransformMode ? "원래대로" : "변신!";
+      transformBtn.textContent = isTransformMode ? "변신 해제!" : "변신!";
     }
 
     function renderGuide() {
