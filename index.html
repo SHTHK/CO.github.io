@@ -6,28 +6,25 @@
   <title>우리 동아리 정상운영 합니다!</title>
   <style>
     :root {
-      --bg: #fff6fb;
-      --desk: #ffd7ea;
-      --folder: #fff9ee;
-      --folder-edge: #f2d8b8;
-      --paper: #fffefb;
-      --line: #d9e9ff;
-      --ink: #3b2f46;
-      --point: #6b7cff;
-      --point-dark: #4650a8;
-      --accent: #ff7eb6;
-      --accent-soft: #ffe36e;
-      --mint: #9fe4d0;
-      --soft: #fff1dd;
-      --shadow: 0 20px 44px rgba(118, 85, 140, 0.16);
-      --radius: 24px;
-      --radius-sm: 16px;
-      --header-h: 92px;
+      --bg-1: #fff7fb;
+      --bg-2: #ffe2f0;
+      --bg-3: #ffd0e7;
+      --paper: #ffffff;
+      --paper-soft: #fff8fc;
+      --pink: #ff3f93;
+      --pink-dark: #e11877;
+      --pink-soft: #ff8ec2;
+      --line: #ffc7df;
+      --ink: #4a2440;
+      --ink-soft: #7a4e69;
+      --shadow: 0 18px 40px rgba(255, 63, 147, 0.16);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --header-h: 94px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html, body {
       margin: 0;
@@ -36,89 +33,91 @@
       font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.75), transparent 28%),
-        radial-gradient(circle at top right, rgba(255,230,120,0.35), transparent 24%),
-        linear-gradient(180deg, #fff8ff 0%, #ffeef7 38%, #fff0d9 100%);
+        radial-gradient(circle at top left, rgba(255,255,255,0.95), transparent 28%),
+        radial-gradient(circle at top right, rgba(255,255,255,0.55), transparent 20%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 58%, var(--bg-3) 100%);
     }
 
-    button, input, textarea {
-      font: inherit;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 8% 14%, rgba(255,255,255,0.7) 0 3px, transparent 4px),
+        radial-gradient(circle at 88% 10%, rgba(255,255,255,0.7) 0 3px, transparent 4px),
+        radial-gradient(circle at 14% 76%, rgba(255,255,255,0.55) 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 68%, rgba(255,255,255,0.55) 0 2px, transparent 3px);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      filter: none !important;
+      image-rendering: auto;
     }
 
     button {
-      cursor: pointer;
+      font: inherit;
       border: none;
-      background: none;
+      cursor: pointer;
     }
 
     .app {
       min-height: 100vh;
-      padding: 26px;
+      padding: 24px;
       display: flex;
       justify-content: center;
       align-items: stretch;
     }
 
-    .folder {
-      position: relative;
+    .binder {
       width: min(1400px, 100%);
-      min-height: calc(100vh - 52px);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.2)),
-        var(--folder);
-      border: 1px solid rgba(118, 85, 140, 0.12);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
+      min-height: calc(100vh - 48px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.55));
+      border: 1px solid rgba(255, 63, 147, 0.18);
+      border-radius: 30px;
       overflow: hidden;
+      box-shadow: var(--shadow);
+      position: relative;
     }
 
-    .folder::before {
+    .binder::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.12));
-    }
-
-    .folder::after {
-      content: "✦ ✦ ✦";
-      position: absolute;
-      right: 24px;
-      top: 18px;
-      font-size: 1rem;
-      letter-spacing: 8px;
-      color: rgba(255, 126, 182, 0.55);
+      inset: 0;
       pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.18), transparent 18%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.12) 0 1px, transparent 1px 38px);
+      opacity: 0.65;
     }
 
-    .titlebar {
+    .header {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 10;
       min-height: var(--header-h);
-      padding: 26px 34px 18px;
-      background:
-        linear-gradient(180deg, rgba(255,249,238,0.98), rgba(255,241,249,0.93));
-      backdrop-filter: blur(4px);
-      border-bottom: 1px solid rgba(107, 124, 255, 0.14);
+      padding: 24px 30px 18px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      align-items: center;
+      gap: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,245,251,0.95));
+      border-bottom: 1px solid rgba(255, 63, 147, 0.14);
+      backdrop-filter: blur(6px);
     }
 
-    h1 {
+    .title {
       margin: 0;
-      font-size: clamp(1.7rem, 2vw, 2.4rem);
-      letter-spacing: -0.03em;
+      font-size: clamp(1.65rem, 2vw, 2.4rem);
       font-weight: 900;
-      color: var(--point-dark);
-      text-shadow: 0 2px 0 rgba(255,255,255,0.8);
+      letter-spacing: -0.03em;
+      color: var(--pink-dark);
+      text-shadow: 0 2px 0 rgba(255,255,255,0.9);
     }
 
-    .index-tabs {
+    .tabs {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
@@ -126,105 +125,96 @@
     }
 
     .tab-btn {
-      min-width: 132px;
-      padding: 14px 16px;
-      border-radius: 20px 20px 8px 8px;
-      background: linear-gradient(180deg, #ffe97f, #ffd6e8);
-      color: var(--point-dark);
+      min-width: 138px;
+      padding: 13px 16px;
+      border-radius: 18px 18px 8px 8px;
+      background: linear-gradient(180deg, #ff8ec2, #ff58a0);
+      color: #fff;
       font-weight: 900;
-      box-shadow: inset 0 -2px 0 rgba(70, 80, 168, 0.1);
-      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,0.08);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
     }
 
     .tab-btn:hover {
       transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(255, 63, 147, 0.18);
     }
 
     .tab-btn.active {
-      background: linear-gradient(180deg, #ffffff, #fff8fd);
-      color: var(--accent);
-      box-shadow: 0 8px 20px rgba(107, 124, 255, 0.12);
+      background: linear-gradient(180deg, #ffffff, #fff4fa);
+      color: var(--pink-dark);
+      box-shadow: 0 10px 22px rgba(255, 63, 147, 0.14);
     }
 
     .content {
-      padding: 26px;
+      padding: 24px;
     }
 
     .page {
       display: none;
-      animation: fadeIn 0.22s ease;
+      animation: fadeIn 0.2s ease;
     }
 
-    .page.active {
-      display: block;
-    }
+    .page.active { display: block; }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .paper {
+    .sheet {
+      min-height: calc(100vh - var(--header-h) - 96px);
+      padding: 28px;
+      border-radius: var(--radius-lg);
       position: relative;
       background:
-        radial-gradient(circle at 92% 10%, rgba(255, 233, 127, 0.18), transparent 12%),
-        radial-gradient(circle at 88% 18%, rgba(255, 126, 182, 0.12), transparent 10%),
+        radial-gradient(circle at 92% 8%, rgba(255, 63, 147, 0.08), transparent 12%),
+        radial-gradient(circle at 86% 15%, rgba(255, 142, 194, 0.13), transparent 10%),
         repeating-linear-gradient(
           180deg,
-          transparent 0,
-          transparent 34px,
-          var(--line) 34px,
-          var(--line) 35px
+          transparent 0 33px,
+          var(--line) 33px 34px
         ),
-        var(--paper);
-      border: 1px solid rgba(107, 124, 255, 0.12);
-      border-radius: var(--radius);
-      padding: 28px;
-      min-height: calc(100vh - var(--header-h) - 104px);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.8);
+        linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      border: 1px solid rgba(255, 63, 147, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.75);
     }
 
-    .paper::before {
+    .sheet::before {
       content: "";
       position: absolute;
       left: 38px;
       top: 0;
       bottom: 0;
       width: 2px;
-      background: rgba(255, 126, 182, 0.34);
+      background: rgba(255, 63, 147, 0.28);
       pointer-events: none;
     }
 
-    .character-grid-wrap {
+    .team-blocks {
       display: grid;
-      gap: 22px;
+      gap: 24px;
     }
 
     .team-row {
       display: grid;
       grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 18px;
+      gap: 16px;
     }
 
     .char-card {
       position: relative;
-      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,247,252,0.92));
-      border: 1px solid rgba(107, 124, 255, 0.16);
-      border-radius: 24px;
+      min-width: 0;
       padding: 14px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 63, 147, 0.16);
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,245,251,0.93));
       display: flex;
       flex-direction: column;
-      gap: 12px;
       align-items: center;
+      gap: 12px;
       transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-      min-width: 0;
-      overflow: hidden;
+      box-shadow: 0 10px 22px rgba(255, 63, 147, 0.08);
     }
 
     .char-card::before {
@@ -232,26 +222,26 @@
       position: absolute;
       top: 10px;
       right: 12px;
+      color: rgba(255, 63, 147, 0.44);
       font-size: 0.9rem;
-      color: rgba(255, 126, 182, 0.55);
     }
 
     .char-card:hover {
-      transform: translateY(-4px) rotate(-0.4deg);
-      box-shadow: 0 16px 30px rgba(107, 124, 255, 0.16);
-      border-color: rgba(255, 126, 182, 0.38);
+      transform: translateY(-4px);
+      border-color: rgba(255, 63, 147, 0.34);
+      box-shadow: 0 16px 28px rgba(255, 63, 147, 0.14);
     }
 
     .char-thumb {
       width: 100%;
       aspect-ratio: 1 / 1;
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
-      background: #ffffff;
+      background: #fff;
+      border: 1px solid rgba(255, 63, 147, 0.1);
       display: flex;
-      align-items: center;
       justify-content: center;
-      border: 1px solid rgba(47, 42, 36, 0.08);
+      align-items: center;
     }
 
     .char-thumb img,
@@ -259,50 +249,55 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      background: #ffffff;
-      display: block;
-      filter: none !important;
-      image-rendering: auto;
+      background: #fff;
     }
 
     .char-name {
       width: 100%;
       text-align: center;
-      font-size: 0.96rem;
-      font-weight: 800;
+      font-weight: 900;
+      font-size: 0.97rem;
       line-height: 1.35;
+      color: var(--ink);
       word-break: keep-all;
     }
 
-    .profile-page-inner {
+    .profile-layout {
       display: grid;
-      grid-template-columns: minmax(320px, 430px) minmax(0, 1fr);
+      grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
       gap: 28px;
       align-items: start;
     }
 
     .profile-side {
       position: sticky;
-      top: calc(var(--header-h) + 40px);
+      top: calc(var(--header-h) + 36px);
       display: grid;
-      gap: 16px;
+      gap: 14px;
     }
 
     .back-btn {
-      align-self: flex-start;
+      width: fit-content;
       padding: 11px 16px;
       border-radius: 999px;
-      background: rgba(73, 107, 159, 0.12);
-      color: var(--point-dark);
-      font-weight: 800;
+      background: linear-gradient(180deg, #fff, #fff1f8);
+      color: var(--pink-dark);
+      font-weight: 900;
+      border: 1px solid rgba(255, 63, 147, 0.18);
+      box-shadow: 0 8px 18px rgba(255, 63, 147, 0.12);
     }
 
-    .profile-visual-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,245,250,0.92));
-      border: 1px solid rgba(107, 124, 255, 0.16);
+    .profile-card,
+    .detail-card,
+    .guide-item {
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,246,252,0.94));
+      border: 1px solid rgba(255, 63, 147, 0.14);
       border-radius: 24px;
+      box-shadow: 0 14px 28px rgba(255, 63, 147, 0.08);
+    }
+
+    .profile-card {
       padding: 18px;
-      box-shadow: 0 14px 30px rgba(107, 124, 255, 0.12);
     }
 
     .profile-visual {
@@ -310,11 +305,11 @@
       aspect-ratio: 2 / 3;
       border-radius: 18px;
       overflow: hidden;
-      background: #ffffff;
-      border: 1px solid rgba(47, 42, 36, 0.08);
+      background: #fff;
+      border: 1px solid rgba(255, 63, 147, 0.1);
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
     }
 
     .transform-btn {
@@ -322,212 +317,102 @@
       margin-top: 14px;
       padding: 14px 16px;
       border-radius: 16px;
-      background: linear-gradient(135deg, var(--point), var(--accent));
+      background: linear-gradient(135deg, var(--pink), var(--pink-soft));
       color: #fff;
       font-weight: 900;
       letter-spacing: -0.02em;
-      box-shadow: 0 10px 18px rgba(107, 124, 255, 0.24);
+      box-shadow: 0 10px 18px rgba(255, 63, 147, 0.2);
     }
 
     .transform-btn.active {
-      background: linear-gradient(135deg, var(--accent), #ffb5d6);
+      background: linear-gradient(135deg, var(--pink-dark), var(--pink));
     }
 
-    .profile-detail-card {
-      background: rgba(255,255,255,0.88);
-      border: 1px solid rgba(73, 107, 159, 0.16);
-      border-radius: 24px;
+    .detail-card {
       padding: 22px;
-      min-width: 0;
     }
 
-    .profile-detail-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .detail-item {
-      display: grid;
-      grid-template-columns: 112px minmax(0, 1fr);
-      gap: 16px;
-      align-items: start;
-      padding: 14px 0;
-      border-bottom: 1px dashed rgba(73, 107, 159, 0.22);
-    }
-
-    .detail-item:last-child {
-      border-bottom: none;
-    }
-
-    .detail-label {
-      font-weight: 900;
-      color: var(--point-dark);
-    }
-
-    .detail-value {
-      min-width: 0;
-      white-space: pre-wrap;
-      line-height: 1.75;
-      word-break: keep-all;
-    }
-
-    .guide-wrap {
-      display: grid;
-      gap: 24px;
-    }
-
-    .guide-list {
+    .detail-list {
       display: grid;
       gap: 12px;
     }
 
+    .detail-item {
+      display: grid;
+      grid-template-columns: 108px minmax(0, 1fr);
+      gap: 16px;
+      align-items: start;
+      padding: 14px 0;
+      border-bottom: 1px dashed rgba(255, 63, 147, 0.18);
+    }
+
+    .detail-item:last-child { border-bottom: none; }
+
+    .detail-label {
+      font-weight: 900;
+      color: var(--pink-dark);
+    }
+
+    .detail-value {
+      min-width: 0;
+      line-height: 1.75;
+      white-space: pre-wrap;
+      word-break: keep-all;
+      color: var(--ink);
+    }
+
+    .guide-wrap {
+      display: grid;
+      gap: 14px;
+    }
+
+    .guide-list {
+      display: grid;
+      gap: 14px;
+    }
+
     .guide-item {
-      background: rgba(255,255,255,0.9);
-      border: 1px solid rgba(73, 107, 159, 0.16);
-      border-radius: 18px;
       overflow: hidden;
     }
 
     .guide-question {
       width: 100%;
+      padding: 18px 20px;
+      background: transparent;
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
-      gap: 14px;
-      padding: 18px 20px;
+      gap: 16px;
       text-align: left;
-      font-weight: 800;
+      font-weight: 900;
       color: var(--ink);
-      background: transparent;
     }
 
-    .guide-question span:last-child {
-      font-size: 1.1rem;
-      color: var(--point-dark);
+    .guide-arrow {
+      color: var(--pink-dark);
       transition: transform 0.18s ease;
     }
 
-    .guide-item.open .guide-question span:last-child {
+    .guide-item.open .guide-arrow {
       transform: rotate(90deg);
     }
 
     .guide-answer {
       display: none;
-      padding: 0 20px 18px;
-      line-height: 1.75;
+      padding: 0 20px 20px;
+      line-height: 1.8;
+      color: var(--ink-soft);
       white-space: pre-wrap;
-      color: rgba(47, 42, 36, 0.92);
     }
 
-    .guide-item.open .guide-answer {
-      display: block;
-    }
-
-    .guide-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 0 20px 18px;
-    }
-
-    .mini-btn {
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-size: 0.92rem;
-      font-weight: 800;
-      background: rgba(73, 107, 159, 0.1);
-      color: var(--point-dark);
-    }
-
-    .mini-btn.delete {
-      background: rgba(201, 127, 84, 0.14);
-      color: #934d26;
-    }
-
-    .editor-card {
-      background: rgba(255,255,255,0.92);
-      border: 1px solid rgba(73, 107, 159, 0.16);
-      border-radius: 22px;
-      padding: 22px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .editor-card h2 {
-      margin: 0;
-      font-size: 1.16rem;
-    }
-
-    .form-grid {
-      display: grid;
-      gap: 12px;
-    }
-
-    .form-grid label {
-      display: grid;
-      gap: 8px;
-      font-weight: 800;
-    }
-
-    .form-grid input,
-    .form-grid textarea {
-      width: 100%;
-      padding: 14px 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(73, 107, 159, 0.22);
-      background: #fff;
-      color: var(--ink);
-      outline: none;
-    }
-
-    .form-grid textarea {
-      min-height: 150px;
-      resize: vertical;
-      line-height: 1.6;
-    }
-
-    .editor-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .primary-btn,
-    .secondary-btn,
-    .ghost-btn {
-      padding: 12px 16px;
-      border-radius: 14px;
-      font-weight: 900;
-    }
-
-    .primary-btn {
-      background: var(--point);
-      color: #fff;
-    }
-
-    .secondary-btn {
-      background: var(--accent);
-      color: #fff;
-    }
-
-    .ghost-btn {
-      background: rgba(73, 107, 159, 0.1);
-      color: var(--point-dark);
-    }
-
-    .status-text {
-      min-height: 1.4em;
-      font-size: 0.94rem;
-      font-weight: 700;
-      color: var(--point-dark);
-    }
+    .guide-item.open .guide-answer { display: block; }
 
     @media (max-width: 1200px) {
       .team-row {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .profile-page-inner {
+      .profile-layout {
         grid-template-columns: 1fr;
       }
 
@@ -537,334 +422,114 @@
     }
 
     @media (max-width: 760px) {
-      .app {
-        padding: 12px;
-      }
-
-      .titlebar {
+      .app { padding: 12px; }
+      .header {
         padding: 18px 18px 14px;
-        align-items: flex-start;
         flex-direction: column;
+        align-items: flex-start;
       }
-
-      .content {
-        padding: 14px;
-      }
-
-      .paper {
-        padding: 16px;
-      }
-
-      .paper::before {
-        left: 22px;
-      }
-
+      .content { padding: 14px; }
+      .sheet { padding: 16px; }
+      .sheet::before { left: 20px; }
       .team-row {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-
       .detail-item {
         grid-template-columns: 1fr;
         gap: 8px;
-      }
-
-      .tab-btn {
-        min-width: 120px;
       }
     }
   </style>
 </head>
 <body>
   <div class="app">
-    <div class="folder">
-      <header class="titlebar">
-        <h1>우리 동아리 정상운영 합니다!</h1>
-        <nav class="index-tabs">
-          <button class="tab-btn active" data-target="charactersPage">첫번째 인덱스</button>
-          <button class="tab-btn" data-target="guidePage">두번째 인덱스</button>
+    <div class="binder">
+      <header class="header">
+        <h1 class="title">우리 동아리 정상운영 합니다!</h1>
+        <nav class="tabs">
+          <button class="tab-btn active" data-page="characters">첫번째 인덱스</button>
+          <button class="tab-btn" data-page="guide">두번째 인덱스</button>
         </nav>
       </header>
 
       <main class="content">
         <section class="page active" id="charactersPage">
-          <div class="paper">
-            <div class="character-grid-wrap" id="characterGridWrap"></div>
+          <div class="sheet">
+            <div class="team-blocks" id="characterGridWrap"></div>
           </div>
         </section>
 
         <section class="page" id="profilePage">
-          <div class="paper">
-            <div class="profile-page-inner">
+          <div class="sheet">
+            <div class="profile-layout">
               <div class="profile-side">
-                <button class="back-btn" id="backToListBtn">← 뒤로가기</button>
-                <div class="profile-visual-card">
+                <button class="back-btn" id="backToListBtn" type="button">← 뒤로가기</button>
+                <div class="profile-card">
                   <div class="profile-visual">
                     <img id="profileBodyImage" src="" alt="캐릭터 전신 사진" />
                   </div>
-                  <button class="transform-btn" id="transformBtn">변신!</button>
+                  <button class="transform-btn" id="transformBtn" type="button">변신!</button>
                 </div>
               </div>
 
-              <div class="profile-detail-card">
-                <div class="profile-detail-list" id="profileDetailList"></div>
+              <div class="detail-card">
+                <div class="detail-list" id="profileDetailList"></div>
               </div>
             </div>
           </div>
         </section>
 
         <section class="page" id="guidePage">
-          <div class="paper">
-            xt-anchor="middle" dominant-baseline="middle" font-size="42" font-family="Pretendard, Apple SD Gothic Neo, Noto Sans KR, sans-serif" fill="#6b7cff" font-weight="700">${label}</text>
+          <div class="sheet">
+            <div class="guide-wrap">
+              <div class="guide-list" id="guideList"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    /*
+      ==========================
+      수정이 쉬운 구간
+      1) characterData 안의 텍스트/이미지 경로를 바꾸면 캐릭터 정보가 바뀝니다.
+      2) 두번째 인덱스의 질문/답변은 defaultGuideItems 배열에서 직접 수정하면 됩니다.
+      3) 이미지는 같은 저장소 안에 넣고 상대 경로로 연결하면 됩니다.
+         예시: "images/char01_thumb.png"
+      ==========================
+    */
+
+    function makePlaceholder(label, ratio = "square") {
+      const width = ratio === "portrait" ? 800 : 800;
+      const height = ratio === "portrait" ? 1200 : 800;
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+          <rect width="100%" height="100%" fill="#ffffff"/>
+          <rect x="28" y="28" width="${width - 56}" height="${height - 56}" rx="24" fill="#fff5fb" stroke="#ff3f93" stroke-width="4" stroke-dasharray="10 10"/>
+          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="42" font-family="Pretendard, Apple SD Gothic Neo, Noto Sans KR, sans-serif" fill="#e11877" font-weight="700">${label}</text>
         </svg>
       `;
       return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
     }
 
     const characterData = [
-      {
-        id: 1,
-        team: 1,
-        name: "캐릭터 01",
-        gender: "여",
-        age: "17",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
-        feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 01"),
-        body: makePlaceholder("전신 01", "portrait"),
-        transform: {
-          transformName: "변신명 01",
-          name: "변신 후 이름 01",
-          appearance: "여기에 변신 후 외관 설명을 입력하세요.",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
-          feature: "여기에 변신 후 특징 설명을 입력하세요.",
-          body: makePlaceholder("변신 전신 01", "portrait")
-        }
-      },
-      {
-        id: 2,
-        team: 1,
-        name: "캐릭터 02",
-        gender: "남",
-        age: "18",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
-        feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 02"),
-        body: makePlaceholder("전신 02", "portrait"),
-        transform: {
-          transformName: "변신명 02",
-          name: "변신 후 이름 02",
-          appearance: "여기에 변신 후 외관 설명을 입력하세요.",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
-          feature: "여기에 변신 후 특징 설명을 입력하세요.",
-          body: makePlaceholder("변신 전신 02", "portrait")
-        }
-      },
-      {
-        id: 3,
-        team: 1,
-        name: "캐릭터 03",
-        gender: "여",
-        age: "17",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
-        feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 03"),
-        body: makePlaceholder("전신 03", "portrait"),
-        transform: {
-          transformName: "변신명 03",
-          name: "변신 후 이름 03",
-          appearance: "여기에 변신 후 외관 설명을 입력하세요.",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
-          feature: "여기에 변신 후 특징 설명을 입력하세요.",
-          body: makePlaceholder("변신 전신 03", "portrait")
-        }
-      },
-      {
-        id: 4,
-        team: 1,
-        name: "캐릭터 04",
-        gender: "남",
-        age: "18",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
-        feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 04"),
-        body: makePlaceholder("전신 04", "portrait"),
-        transform: {
-          transformName: "변신명 04",
-          name: "변신 후 이름 04",
-          appearance: "여기에 변신 후 외관 설명을 입력하세요.",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
-          feature: "여기에 변신 후 특징 설명을 입력하세요.",
-          body: makePlaceholder("변신 전신 04", "portrait")
-        }
-      },
-      {
-        id: 5,
-        team: 1,
-        name: "캐릭터 05",
-        gender: "여",
-        age: "16",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
-        feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 05"),
-        body: makePlaceholder("전신 05", "portrait"),
-        transform: {
-          transformName: "변신명 05",
-          name: "변신 후 이름 05",
-          appearance: "여기에 변신 후 외관 설명을 입력하세요.",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
-          feature: "여기에 변신 후 특징 설명을 입력하세요.",
-          body: makePlaceholder("변신 전신 05", "portrait")
-        }
-      },
-      {
-        id: 6,
-        team: 1,
-        name: "캐릭터 06",
-        gender: "남",
-        age: "17",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
-        feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 06"),
-        body: makePlaceholder("전신 06", "portrait"),
-        transform: {
-          transformName: "변신명 06",
-          name: "변신 후 이름 06",
-          appearance: "여기에 변신 후 외관 설명을 입력하세요.",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
-          feature: "여기에 변신 후 특징 설명을 입력하세요.",
-          body: makePlaceholder("변신 전신 06", "portrait")
-        }
-      },
-      {
-        id: 7,
-        team: 2,
-        name: "캐릭터 07",
-        gender: "여",
-        age: "17",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
-        feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 07"),
-        body: makePlaceholder("전신 07", "portrait"),
-        transform: {
-          transformName: "변신명 07",
-          name: "변신 후 이름 07",
-          appearance: "여기에 변신 후 외관 설명을 입력하세요.",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
-          feature: "여기에 변신 후 특징 설명을 입력하세요.",
-          body: makePlaceholder("변신 전신 07", "portrait")
-        }
-      },
-      {
-        id: 8,
-        team: 2,
-        name: "캐릭터 08",
-        gender: "남",
-        age: "18",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
-        feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 08"),
-        body: makePlaceholder("전신 08", "portrait"),
-        transform: {
-          transformName: "변신명 08",
-          name: "변신 후 이름 08",
-          appearance: "여기에 변신 후 외관 설명을 입력하세요.",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
-          feature: "여기에 변신 후 특징 설명을 입력하세요.",
-          body: makePlaceholder("변신 전신 08", "portrait")
-        }
-      },
-      {
-        id: 9,
-        team: 2,
-        name: "캐릭터 09",
-        gender: "여",
-        age: "16",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
-        feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 09"),
-        body: makePlaceholder("전신 09", "portrait"),
-        transform: {
-          transformName: "변신명 09",
-          name: "변신 후 이름 09",
-          appearance: "여기에 변신 후 외관 설명을 입력하세요.",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
-          feature: "여기에 변신 후 특징 설명을 입력하세요.",
-          body: makePlaceholder("변신 전신 09", "portrait")
-        }
-      },
-      {
-        id: 10,
-        team: 2,
-        name: "캐릭터 10",
-        gender: "남",
-        age: "17",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
-        feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 10"),
-        body: makePlaceholder("전신 10", "portrait"),
-        transform: {
-          transformName: "변신명 10",
-          name: "변신 후 이름 10",
-          appearance: "여기에 변신 후 외관 설명을 입력하세요.",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
-          feature: "여기에 변신 후 특징 설명을 입력하세요.",
-          body: makePlaceholder("변신 전신 10", "portrait")
-        }
-      },
-      {
-        id: 11,
-        team: 2,
-        name: "캐릭터 11",
-        gender: "여",
-        age: "18",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
-        feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 11"),
-        body: makePlaceholder("전신 11", "portrait"),
-        transform: {
-          transformName: "변신명 11",
-          name: "변신 후 이름 11",
-          appearance: "여기에 변신 후 외관 설명을 입력하세요.",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
-          feature: "여기에 변신 후 특징 설명을 입력하세요.",
-          body: makePlaceholder("변신 전신 11", "portrait")
-        }
-      },
-      {
-        id: 12,
-        team: 2,
-        name: "캐릭터 12",
-        gender: "남",
-        age: "17",
-        appearance: "여기에 평상시 외관 설명을 입력하세요.",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
-        feature: "여기에 평상시 특징 설명을 입력하세요.",
-        thumb: makePlaceholder("프로필 12"),
-        body: makePlaceholder("전신 12", "portrait"),
-        transform: {
-          transformName: "변신명 12",
-          name: "변신 후 이름 12",
-          appearance: "여기에 변신 후 외관 설명을 입력하세요.",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
-          feature: "여기에 변신 후 특징 설명을 입력하세요.",
-          body: makePlaceholder("변신 전신 12", "portrait")
-        }
-      }
+      { id: 1, team: 1, name: "캐릭터 01", gender: "여", age: "17", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 01"), body: makePlaceholder("전신 01", "portrait"), transform: { transformName: "변신명 01", name: "변신 후 이름 01", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 01", "portrait") } },
+      { id: 2, team: 1, name: "캐릭터 02", gender: "남", age: "18", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 02"), body: makePlaceholder("전신 02", "portrait"), transform: { transformName: "변신명 02", name: "변신 후 이름 02", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 02", "portrait") } },
+      { id: 3, team: 1, name: "캐릭터 03", gender: "여", age: "17", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 03"), body: makePlaceholder("전신 03", "portrait"), transform: { transformName: "변신명 03", name: "변신 후 이름 03", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 03", "portrait") } },
+      { id: 4, team: 1, name: "캐릭터 04", gender: "남", age: "18", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 04"), body: makePlaceholder("전신 04", "portrait"), transform: { transformName: "변신명 04", name: "변신 후 이름 04", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 04", "portrait") } },
+      { id: 5, team: 1, name: "캐릭터 05", gender: "여", age: "16", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 05"), body: makePlaceholder("전신 05", "portrait"), transform: { transformName: "변신명 05", name: "변신 후 이름 05", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 05", "portrait") } },
+      { id: 6, team: 1, name: "캐릭터 06", gender: "남", age: "17", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 06"), body: makePlaceholder("전신 06", "portrait"), transform: { transformName: "변신명 06", name: "변신 후 이름 06", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 06", "portrait") } },
+      { id: 7, team: 2, name: "캐릭터 07", gender: "여", age: "17", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 07"), body: makePlaceholder("전신 07", "portrait"), transform: { transformName: "변신명 07", name: "변신 후 이름 07", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 07", "portrait") } },
+      { id: 8, team: 2, name: "캐릭터 08", gender: "남", age: "18", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 08"), body: makePlaceholder("전신 08", "portrait"), transform: { transformName: "변신명 08", name: "변신 후 이름 08", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 08", "portrait") } },
+      { id: 9, team: 2, name: "캐릭터 09", gender: "여", age: "16", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 09"), body: makePlaceholder("전신 09", "portrait"), transform: { transformName: "변신명 09", name: "변신 후 이름 09", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 09", "portrait") } },
+      { id: 10, team: 2, name: "캐릭터 10", gender: "남", age: "17", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 10"), body: makePlaceholder("전신 10", "portrait"), transform: { transformName: "변신명 10", name: "변신 후 이름 10", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 10", "portrait") } },
+      { id: 11, team: 2, name: "캐릭터 11", gender: "여", age: "18", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 11"), body: makePlaceholder("전신 11", "portrait"), transform: { transformName: "변신명 11", name: "변신 후 이름 11", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 11", "portrait") } },
+      { id: 12, team: 2, name: "캐릭터 12", gender: "남", age: "17", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 12"), body: makePlaceholder("전신 12", "portrait"), transform: { transformName: "변신명 12", name: "변신 후 이름 12", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 12", "portrait") } }
     ];
 
     const defaultGuideItems = [
-      // 두번째 인덱스의 질문과 답변은 이 배열 안에서 직접 수정하세요.
       {
         question: "이 홈페이지는 어떻게 보나요?",
         answer: "첫번째 인덱스에서는 캐릭터를 고를 수 있고, 두번째 인덱스에서는 플레이 가이드를 볼 수 있습니다."
@@ -879,37 +544,83 @@
       }
     ];
 
-    const pageEls = document.querySelectorAll(".page");
-    const tabBtns = document.querySelectorAll(".tab-btn");
+    const pages = {
+      characters: document.getElementById("charactersPage"),
+      profile: document.getElementById("profilePage"),
+      guide: document.getElementById("guidePage")
+    };
+
+    const tabButtons = document.querySelectorAll(".tab-btn");
     const characterGridWrap = document.getElementById("characterGridWrap");
-    const backToListBtn = document.getElementById("backToListBtn");
-    const transformBtn = document.getElementById("transformBtn");
+    const guideList = document.getElementById("guideList");
     const profileBodyImage = document.getElementById("profileBodyImage");
     const profileDetailList = document.getElementById("profileDetailList");
-    const guideList = document.getElementById("guideList");
+    const transformBtn = document.getElementById("transformBtn");
+    const backToListBtn = document.getElementById("backToListBtn");
 
     let selectedCharacterId = null;
-  ow.scrollTo({ top: 0, behavior: "smooth" });
+    let isTransformMode = false;
+
+    function getCharacterById(id) {
+      return characterData.find(character => character.id === id);
     }
 
-    function setRoute(hash) {
-      if (location.hash === hash) {
-        syncFromHash();
-        return;
-      }
-      location.hash = hash;
+    function setActiveTab(pageKey) {
+      tabButtons.forEach(button => {
+        const buttonPage = button.dataset.page;
+        const isActive = pageKey === "profile"
+          ? buttonPage === "characters"
+          : buttonPage === pageKey;
+        button.classList.toggle("active", isActive);
+      });
     }
 
-    function syncFromHash() {
+    function showPage(pageKey) {
+      Object.entries(pages).forEach(([key, pageEl]) => {
+        pageEl.classList.toggle("active", key === pageKey);
+      });
+      setActiveTab(pageKey);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function applyRoute() {
       const hash = location.hash || "#characters";
 
+      if (hash === "#guide") {
+        showPage("guide");
+        return;
+      }
+
       if (hash.startsWith("#character-")) {
-        const id = Number(hash.replace("#character-", ""));
+        const id = Number(hash.slice("#character-".length));
         const character = getCharacterById(id);
         if (character) {
-          selecteML = [team1, team2].map(team => {
-        const cards = team.map(character => `
-          <button class="char-card" type="button" onclick=>
+          selectedCharacterId = id;
+          isTransformMode = false;
+          renderProfile();
+          showPage("profile");
+          return;
+        }
+      }
+
+      showPage("characters");
+    }
+
+    function goToRoute(hash) {
+      if (location.hash === hash) {
+        applyRoute();
+      } else {
+        location.hash = hash;
+      }
+    }
+
+    function renderCharacters() {
+      const firstTeam = characterData.filter(character => character.team === 1);
+      const secondTeam = characterData.filter(character => character.team === 2);
+
+      characterGridWrap.innerHTML = [firstTeam, secondTeam].map(team => {
+        const cardsHtml = team.map(character => `
+          <button class="char-card" type="button" onclick="openProfile(${character.id})">
             <div class="char-thumb">
               <img src="${character.thumb}" alt="${character.name} 프로필 사진" />
             </div>
@@ -917,89 +628,91 @@
           </button>
         `).join("");
 
-        return `<div class="team-row">${cards}</div>`;
+        return `<div class="team-row">${cardsHtml}</div>`;
       }).join("");
-    }
-
-    function openProfile(id) {
-      setRoute(`#character-${id}`);
-    }
-
-    function renderProfile() {
-      const character = getCharacterById(selectedCharacterId);
-      if (!character) return;
-
-      const current = isTransformMode ? {
-        name: character.transform.name,
-        gender: character.gender,
-        age: character.age,
-        appearance: character.transform.appearance,
-        personality: character.transform.personality,
-        feature: character.transform.feature,
-        transformName: character.transform.transformName,
-        body: character.transform.body
-      } : {
-        name: character.name,
-        gender: character.gender,
-        age: character.age,
-        appearance: character.appearance,
-        personality: character.personality,
-        feature: character.feature,
-        body: character.body
-      };
-
-      profileBodyImage.src = current.body;
-      profileBodyImage.alt = `${current.name} 전신 사진`;
-
-      const detailRows = [
-        ["이름", current.name],
-        ...(isTransformMode ? [["변신명", current.transformName]] : []),
-        ["성별", current.gender],
-        ["나이", current.age],
-        ["외관", current.appearance],
-        ["성격", current.personality],
-        ["특징", current.feature]
-      ];
-
-      profileDetailList.innerHTML = detailRows.map(([label, value]) => `
-        <div class="detail-item">
-          <div class="detail-label">${label}</div>
-          <div class="detail-value">${value}</div>
-        </div>
-      `).join("");
-
-      transformBtn.classList.toggle("active", isTransformMode);
-      transformBtn.textContent = isTransformMode ? "원래대로" : "변신!";
-    }
-
-    function toggleTransform() {
-      if (!selectedCharacterId) return;
-      isTransformMode = !isTransformMode;
-      renderProfile();
     }
 
     function renderGuide() {
       guideList.innerHTML = defaultGuideItems.map((item, index) => `
         <div class="guide-item">
-          <button type="button" class="guide-question" onclick="toggleGuideItem(${index}, this)">
+          <button class="guide-question" type="button" onclick="toggleGuideItem(${index}, this)">
             <span>${item.question}</span>
-            <span>▶</span>
+            <span class="guide-arrow">▶</span>
           </button>
           <div class="guide-answer">${item.answer}</div>
         </div>
       `).join("");
     }
 
-    function toggleGuideItem(index, buttonEl) {
-      const item = buttonEl.closest(".guide-item");
-      item.classList.toggle("open");
+    function renderProfile() {
+      const character = getCharacterById(selectedCharacterId);
+      if (!character) return;
+
+      const currentProfile = isTransformMode
+        ? {
+            name: character.transform.name,
+            transformName: character.transform.transformName,
+            gender: character.gender,
+            age: character.age,
+            appearance: character.transform.appearance,
+            personality: character.transform.personality,
+            feature: character.transform.feature,
+            body: character.transform.body
+          }
+        : {
+            name: character.name,
+            gender: character.gender,
+            age: character.age,
+            appearance: character.appearance,
+            personality: character.personality,
+            feature: character.feature,
+            body: character.body
+          };
+
+      profileBodyImage.src = currentProfile.body;
+      profileBodyImage.alt = `${currentProfile.name} 전신 사진`;
+
+      const rows = [
+        ["이름", currentProfile.name],
+        ...(isTransformMode ? [["변신명", currentProfile.transformName]] : []),
+        ["성별", currentProfile.gender],
+        ["나이", currentProfile.age],
+        ["외관", currentProfile.appearance],
+        ["성격", currentProfile.personality],
+        ["특징", currentProfile.feature]
+      ];
+
+      profileDetailList.innerHTML = rows.map(([label, value]) => `
+        <div class="detail-item">
+          <div class="detail-label">${label}</div>
+          <div class="detail-value">${value}</div>
+        </div>
+      `).join("");
+
+      transformBtn.textContent = isTransformMode ? "원래대로" : "변신!";
+      transformBtn.classList.toggle("active", isTransformMode);
     }
 
-    tabBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const targetHash = btn.dataset.target === "guidePage" ? "#guide" : "#characters";
-        setRoute(targetHash);
+    function openProfile(id) {
+      goToRoute(`#character-${id}`);
+    }
+
+    function toggleGuideItem(index, buttonEl) {
+      const guideItem = buttonEl.closest(".guide-item");
+      guideItem.classList.toggle("open");
+    }
+
+    tabButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const page = button.dataset.page;
+        goToRoute(page === "guide" ? "#guide" : "#characters");
       });
+    });
+
+    transformBtn.addEventListener("click", () => {
+      if (!selectedCharacterId) return;
+      isTransformMode = !isTransformMode;
+      renderProfile();
     });
 
     backToListBtn.addEventListener("click", () => {
@@ -1007,27 +720,25 @@
         history.back();
         setTimeout(() => {
           if (location.hash.startsWith("#character-")) {
-            setRoute("#characters");
+            goToRoute("#characters");
           }
         }, 120);
       } else {
-        setRoute("#characters");
+        goToRoute("#characters");
       }
     });
 
-    transformBtn.addEventListener("click", toggleTransform);
-    window.addEventListener("hashchange", syncFromHash);
+    window.addEventListener("hashchange", applyRoute);
+    window.openProfile = openProfile;
+    window.toggleGuideItem = toggleGuideItem;
 
     renderCharacters();
     renderGuide();
+
     if (!location.hash) {
       location.hash = "#characters";
-    } else {
-      syncFromHash();
     }
-
-    window.openProfile = openProfile;
-    window.toggleGuideItem = toggleGuideItem;
+    applyRoute();
   </script>
 </body>
 </html>
