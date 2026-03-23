@@ -6,17 +6,17 @@
   <title>우리 동아리 정상운영 합니다!</title>
   <style>
     :root {
-      /* 마법소녀/소년 느낌의 통통 튀는 파스텔 컬러 팔레트 */
+      
       --bg-gradient: linear-gradient(135deg, #ffe6f2 0%, #e6e6ff 50%, #e6f9ff 100%);
-      --folder-cover: #ffd1dc; /* 딸기우유 핑크 */
-      --folder-border: #ff85a2; /* 진한 핑크 테두리 */
+      --folder-cover: #ffd1dc;
+      --folder-border: #ff85a2;
       --paper: #ffffff;
-      --line: #ffe0eb; /* 귀여운 핑크색 노트 선 */
-      --ink: #5c3a6b; /* 너무 까맣지 않은 부드러운 보라빛 텍스트 */
-      --point: #ff549a; /* 마법의 핫핑크 */
+      --line: #ffe0eb; /* 노트 선 */
+      --ink: #5c3a6b; /* 텍스트 */
+      --point: #ff549a;
       --point-dark: #cc0066;
-      --accent: #ffcc00; /* 반짝이는 별빛 옐로우 */
-      --magic-blue: #66ccff; /* 마법소년 느낌 스카이블루 */
+      --accent: #ffcc00;
+      --magic-blue: #66ccff;
       --shadow: 0 16px 40px rgba(255, 102, 178, 0.25);
       --radius: 32px;
       --radius-sm: 20px;
@@ -34,7 +34,7 @@
       font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Comic Sans MS", sans-serif;
       color: var(--ink);
       background: var(--bg-gradient);
-      /* 귀여운 땡땡이 배경 패턴 추가 */
+      /* 배경 패턴 */
       background-image: radial-gradient(#fff 15%, transparent 16%), radial-gradient(#fff 15%, transparent 16%);
       background-size: 30px 30px;
       background-position: 0 0, 15px 15px;
@@ -58,7 +58,7 @@
       align-items: stretch;
     }
 
-    /* 서류철(바인더) 외곽 */
+    /* 바인더 외곽 */
     .folder {
       position: relative;
       width: min(1400px, 100%);
@@ -72,7 +72,7 @@
       overflow: hidden;
     }
 
-    /* 서류철 링 느낌 */
+    /* 서류철 링 */
     .folder::before {
       content: "";
       position: absolute;
@@ -545,8 +545,8 @@
       <header class="titlebar">
         <h1>우리 동아리 정상운영 합니다!</h1>
         <nav class="index-tabs">
-          <button class="tab-btn active" data-target="charactersPage">첫번째 인덱스</button>
-          <button class="tab-btn" data-target="guidePage">두번째 인덱스</button>
+          <button class="tab-btn active" data-target="charactersPage">캐릭터 소개</button>
+          <button class="tab-btn" data-target="guidePage">플레이 안내</button>
         </nav>
       </header>
 
@@ -561,7 +561,7 @@
           <div class="paper">
             <div class="profile-page-inner">
               <div class="profile-side">
-                <button class="back-btn" type="button" onclick="history.back()">← 뒤로가기</button>
+                <button class="back-btn" type="button" onclick="history.back()">← BACK</button>
                 <div class="profile-visual-card">
                   <div class="profile-visual">
                     <img id="profileBodyImage" src="" alt="캐릭터 전신 사진" />
@@ -580,7 +580,7 @@
         <section class="page" id="guidePage">
           <div class="paper">
             <div class="guide-wrap">
-              <h2 class="section-title">자주 묻는 질문</h2>
+              <h2 class="section-title">문제가 생겼어요!</h2>
               <div class="guide-list" id="guideList"></div>
 
               <h2 class="section-title" style="margin-top: 20px;">참고하면 좋은 것들</h2>
@@ -616,7 +616,7 @@
     }
 
     const characterData = [
-      { id: 1, team: 1, name: "캐릭터 01", gender: "여", age: "17", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 01"), body: makePlaceholder("전신 01", "portrait"), transform: { transformName: "변신명 01", name: "변신 후 이름 01", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 01", "portrait") } },
+      { id: 1, team: 1, name: "이강혁", gender: "남", age: "19", appearance: "153cm. GLOSS의 최단신. 본래 귀여운 인상이지만 의도적으로 항상 미간을 찌푸리고 다닌다.", personality: "팀을 먹여 살리기 위해 일하는 가장 느낌이다. 물론 다른 팀원들도 열심히 하고 있긴 하지만. 다혈질에 직설적이다. ", feature: "항상 자신이 '마법소년'임을 강조한다. 마법소녀로 착각받으면 짜증나한다.", thumb: 'KH_tn.png', body: 'KHB_wl_cowboyshot.png', transform: { transformName: "매지컬 앤젤 핑크", name: "변신 후 이름 01", appearance: "", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 01", "portrait") } },
       { id: 2, team: 1, name: "캐릭터 02", gender: "남", age: "18", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 02"), body: makePlaceholder("전신 02", "portrait"), transform: { transformName: "변신명 02", name: "변신 후 이름 02", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 02", "portrait") } },
       { id: 3, team: 1, name: "캐릭터 03", gender: "여", age: "17", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 03"), body: makePlaceholder("전신 03", "portrait"), transform: { transformName: "변신명 03", name: "변신 후 이름 03", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 03", "portrait") } },
       { id: 4, team: 1, name: "캐릭터 04", gender: "남", age: "18", appearance: "여기에 평상시 외관 설명을 입력하세요.", personality: "여기에 평상시 성격 설명을 입력하세요.", feature: "여기에 평상시 특징 설명을 입력하세요.", thumb: makePlaceholder("프로필 04"), body: makePlaceholder("전신 04", "portrait"), transform: { transformName: "변신명 04", name: "변신 후 이름 04", appearance: "여기에 변신 후 외관 설명을 입력하세요.", personality: "여기에 변신 후 성격 설명을 입력하세요.", feature: "여기에 변신 후 특징 설명을 입력하세요.", body: makePlaceholder("변신 전신 04", "portrait") } },
@@ -727,18 +727,17 @@
       setRoute(`#character-${id}`);
     }
 
-    function renderProfile() {
+function renderProfile() {
       const character = getCharacterById(selectedCharacterId);
       if (!character) return;
 
       const current = isTransformMode ? {
-        name: character.transform.name,
+        name: character.name, // 원래 이름 유지
         gender: character.gender,
         age: character.age,
         appearance: character.transform.appearance,
         personality: character.transform.personality,
         feature: character.transform.feature,
-        transformName: character.transform.transformName,
         body: character.transform.body
       } : {
         name: character.name,
@@ -753,9 +752,9 @@
       profileBodyImage.src = current.body;
       profileBodyImage.alt = `${current.name} 전신 사진`;
 
+      // 변신명 항목을 삭제하고 원래 이름만 띄우도록 수정
       const detailRows = [
         ["이름", current.name],
-        ...(isTransformMode ? [["변신명", current.transformName]] : []),
         ["성별", current.gender],
         ["나이", current.age],
         ["외관", current.appearance],
