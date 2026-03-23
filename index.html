@@ -6,23 +6,20 @@
   <title>우리 동아리 정상운영 합니다!</title>
   <style>
     :root {
-      --bg: #fff6fb;
-      --folder: #ffe3f0;
-      --folder-border: #ff7db6;
+      /* 마법소녀/소년 느낌의 통통 튀는 파스텔 컬러 팔레트 */
+      --bg-gradient: linear-gradient(135deg, #ffe6f2 0%, #e6e6ff 50%, #e6f9ff 100%);
+      --folder-cover: #ffd1dc; /* 딸기우유 핑크 */
+      --folder-border: #ff85a2; /* 진한 핑크 테두리 */
       --paper: #ffffff;
-      --paper-line: #f8c8de;
-      --paper-margin: #ff9bc7;
-      --card: #fffafe;
-      --card-border: #f5b8d4;
-      --point: #ff2f8a;
-      --point-dark: #d9166f;
-      --point-light: #ffd6e8;
-      --text: #4e2741;
-      --text-soft: #7b5770;
-      --shadow: 0 14px 28px rgba(255, 47, 138, 0.12);
-      --radius-lg: 30px;
-      --radius-md: 22px;
-      --radius-sm: 16px;
+      --line: #ffe0eb; /* 귀여운 핑크색 노트 선 */
+      --ink: #5c3a6b; /* 너무 까맣지 않은 부드러운 보라빛 텍스트 */
+      --point: #ff549a; /* 마법의 핫핑크 */
+      --point-dark: #cc0066;
+      --accent: #ffcc00; /* 반짝이는 별빛 옐로우 */
+      --magic-blue: #66ccff; /* 마법소년 느낌 스카이블루 */
+      --shadow: 0 16px 40px rgba(255, 102, 178, 0.25);
+      --radius: 32px;
+      --radius-sm: 20px;
       --header-h: 100px;
     }
 
@@ -34,193 +31,174 @@
       margin: 0;
       padding: 0;
       min-height: 100%;
-      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-      color: var(--text);
-      background: var(--bg);
+      font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Comic Sans MS", sans-serif;
+      color: var(--ink);
+      background: var(--bg-gradient);
+      /* 귀여운 땡땡이 배경 패턴 추가 */
+      background-image: radial-gradient(#fff 15%, transparent 16%), radial-gradient(#fff 15%, transparent 16%);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        radial-gradient(circle at 12% 16%, rgba(255,255,255,0.95) 0 3px, transparent 4px),
-        radial-gradient(circle at 84% 10%, rgba(255,255,255,0.9) 0 3px, transparent 4px),
-        radial-gradient(circle at 18% 78%, rgba(255,255,255,0.8) 0 2px, transparent 3px),
-        radial-gradient(circle at 76% 68%, rgba(255,255,255,0.8) 0 2px, transparent 3px);
-      opacity: 0.85;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-      filter: none !important;
-      image-rendering: auto;
+    button, input, textarea {
+      font: inherit;
     }
 
     button {
-      font: inherit;
-      border: none;
       cursor: pointer;
+      border: none;
       background: none;
     }
 
     .app {
       min-height: 100vh;
-      padding: 24px;
+      padding: 30px;
       display: flex;
       justify-content: center;
       align-items: stretch;
     }
 
+    /* 서류철(바인더) 외곽 */
     .folder {
       position: relative;
       width: min(1400px, 100%);
-      min-height: calc(100vh - 48px);
-      background: var(--folder);
-      border: 3px solid var(--folder-border);
-      border-radius: 34px;
+      min-height: calc(100vh - 60px);
+      background: var(--folder-cover);
+      border: 4px solid var(--folder-border);
+      border-radius: 36px;
+      box-shadow: 
+        inset 0 0 0 8px rgba(255, 255, 255, 0.5), /* 바인더 안쪽 테두리 */
+        var(--shadow);
       overflow: hidden;
-      box-shadow: var(--shadow);
     }
 
+    /* 서류철 링 느낌 */
     .folder::before {
       content: "";
       position: absolute;
       top: 0;
       left: 0;
       bottom: 0;
-      width: 34px;
-      background: rgba(255,255,255,0.35);
-      border-right: 3px dashed var(--folder-border);
-      pointer-events: none;
-      z-index: 0;
+      width: 40px;
+      background: rgba(255,255,255,0.4);
+      border-right: 4px dashed var(--folder-border);
+      z-index: 10;
     }
 
-    .header {
+    .titlebar {
       position: sticky;
       top: 0;
       z-index: 20;
       min-height: var(--header-h);
-      padding: 26px 30px 0 54px;
+      padding: 30px 40px 0px 60px; /* 왼쪽 바인더 링 피해서 패딩 */
+      background: transparent;
       display: flex;
-      align-items: flex-end;
+      align-items: flex-end; /* 탭이 바닥에 붙도록 */
       justify-content: space-between;
       gap: 20px;
-      background: transparent;
     }
 
-    .title {
+    h1 {
       margin: 0;
-      padding-bottom: 18px;
-      font-size: clamp(1.8rem, 2.4vw, 2.5rem);
+      padding-bottom: 20px;
+      font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+      letter-spacing: -0.02em;
       font-weight: 900;
-      letter-spacing: -0.03em;
-      color: var(--point-dark);
-      text-shadow:
-        2px 2px 0 #fff,
-        -1px -1px 0 #fff,
-        1px -1px 0 #fff,
-        -1px 1px 0 #fff;
+      color: var(--point);
+      text-shadow: 
+        3px 3px 0px #fff, 
+        -1px -1px 0px #fff,  
+        1px -1px 0px #fff,
+        -1px 1px 0px #fff,
+        1px 1px 0px #fff;
     }
 
-    .tabs {
+    .index-tabs {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+      justify-content: flex-end;
       position: relative;
-      top: 4px;
+      top: 4px; /* 종이와 겹치게 */
     }
 
+    /* 서류철 인덱스 탭 디자인 */
     .tab-btn {
-      min-width: 138px;
-      padding: 15px 18px 18px;
-      border-radius: 22px 22px 0 0;
-      background: var(--point-light);
-      border: 3px solid var(--folder-border);
+      min-width: 140px;
+      padding: 16px 20px 20px;
+      border-radius: 24px 24px 0 0;
+      background: #ffb3c6;
+      border: 4px solid var(--folder-border);
       border-bottom: none;
-      color: var(--point-dark);
+      color: #fff;
       font-weight: 900;
-      transition: transform 0.18s ease, background 0.18s ease;
+      font-size: 1.1rem;
+      text-shadow: 1px 1px 0 var(--folder-border);
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .tab-btn:hover {
-      transform: translateY(-3px);
-      background: #ffc4dc;
+      background: #ff99b3;
+      transform: translateY(-4px);
     }
 
     .tab-btn.active {
       background: var(--paper);
-      color: var(--point-dark);
+      color: var(--point);
       border-color: var(--point);
-      padding-bottom: 22px;
+      text-shadow: none;
+      padding-bottom: 24px;
+      z-index: 2;
     }
 
     .content {
+      padding: 0 30px 30px 60px;
       position: relative;
       z-index: 1;
-      padding: 0 24px 24px 54px;
     }
 
     .page {
       display: none;
-      animation: fadeIn 0.18s ease;
+      animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .page.active {
       display: block;
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes popIn {
+      0% { opacity: 0; transform: scale(0.98) translateY(10px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
     }
 
+    /* 다이어리 속지 느낌 */
     .paper {
       position: relative;
-      min-height: calc(100vh - var(--header-h) - 86px);
-      padding: 34px;
-      border-radius: 0 var(--radius-lg) var(--radius-lg) var(--radius-lg);
-      border: 3px solid var(--point);
-      background:
+      background: 
         repeating-linear-gradient(
           180deg,
           transparent 0,
-          transparent 37px,
-          var(--paper-line) 37px,
-          var(--paper-line) 38px
+          transparent 39px,
+          var(--line) 39px,
+          var(--line) 40px
         ),
         var(--paper);
-      box-shadow: 6px 6px 0 rgba(255, 47, 138, 0.08);
-    }
-
-    .paper::before {
-      content: "";
-      position: absolute;
-      left: 34px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: var(--paper-margin);
-      pointer-events: none;
+      background-position: 0 10px;
+      border: 4px solid var(--point);
+      border-radius: 0 var(--radius) var(--radius) var(--radius);
+      padding: 40px;
+      min-height: calc(100vh - var(--header-h) - 90px);
+      box-shadow: 6px 6px 0px rgba(255, 102, 178, 0.2);
     }
 
     .paper::after {
       content: "★";
       position: absolute;
+      bottom: 20px;
       right: 20px;
-      bottom: 14px;
-      color: #ff7db6;
-      font-size: 1.7rem;
-      opacity: 0.65;
-      pointer-events: none;
+      color: var(--accent);
+      font-size: 2rem;
+      text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
     }
 
     .character-grid-wrap {
@@ -228,101 +206,83 @@
       gap: 30px;
     }
 
+    /* 팀별 물리적 분리 박스 */
     .team-section {
-      display: grid;
-      gap: 16px;
-      padding: 18px 18px 20px;
-      border: 2px dashed var(--card-border);
-      border-radius: 24px;
-      background: #fffafe;
-    }
-
-    .team-section + .team-section {
-      margin-top: 6px;
+      background: rgba(255, 255, 255, 0.6);
+      border: 3px dashed #ffb3c6;
+      border-radius: 28px;
+      padding: 24px;
+      margin-bottom: 20px;
     }
 
     .team-heading {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+      margin-bottom: 20px;
       padding-bottom: 10px;
-      border-bottom: 2px solid #f7d3e3;
-    }
-
-    .team-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 84px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: var(--point);
-      color: #fff;
-      font-weight: 900;
-      letter-spacing: 0.04em;
+      border-bottom: 3px double #ffcce0;
     }
 
     .team-name {
-      font-size: 1.3rem;
+      font-size: 1.6rem;
       font-weight: 900;
       color: var(--point-dark);
-      letter-spacing: -0.02em;
+      letter-spacing: 0.05em;
     }
 
     .team-row {
       display: grid;
       grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 18px;
+      gap: 20px;
     }
 
+    /* 캐릭터 카드 - 마법소녀 포토카드 느낌 & 노란별 호버 효과 */
     .char-card {
       position: relative;
-      min-width: 0;
-      padding: 14px;
-      border-radius: var(--radius-md);
-      background: var(--card);
-      border: 2px solid var(--card-border);
+      background: #fff;
+      border: 3px solid #ffd1dc;
+      border-radius: var(--radius-sm);
+      padding: 16px;
       display: flex;
       flex-direction: column;
+      gap: 14px;
       align-items: center;
-      gap: 12px;
-      box-shadow: 0 8px 0 #ffe6f1;
-      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 8px 0 #ffe6f2;
     }
 
     .char-card::before {
-      content: "★";
+      content: "⭐";
       position: absolute;
-      top: -10px;
-      right: -8px;
-      font-size: 1rem;
-      color: #ff7db6;
+      top: -12px;
+      right: -12px;
+      font-size: 1.5rem;
+      filter: drop-shadow(0 2px 4px rgba(255,204,0,0.4));
+      z-index: 2;
       opacity: 0;
-      transform: scale(0.6);
-      transition: 0.18s ease;
+      transform: scale(0);
+      transition: all 0.2s ease;
     }
 
     .char-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px) rotate(-2deg);
       border-color: var(--point);
-      box-shadow: 0 10px 0 #ffc8df;
+      box-shadow: 0 12px 0 #ffb3c6;
     }
 
     .char-card:hover::before {
       opacity: 1;
-      transform: scale(1);
+      transform: scale(1) rotate(15deg);
     }
 
     .char-thumb {
       width: 100%;
       aspect-ratio: 1 / 1;
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
-      background: #fff;
-      border: 2px dashed #f1b3cf;
+      background: #fdf5ff;
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 2px dashed #ffb3c6;
     }
 
     .char-thumb img,
@@ -330,115 +290,126 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      background: #fff;
+      background: #ffffff;
+      display: block;
+      filter: none !important;
+      image-rendering: auto;
     }
 
     .char-name {
       width: 100%;
       text-align: center;
+      font-size: 1.1rem;
       font-weight: 900;
-      font-size: 1rem;
       color: var(--point-dark);
-      background: #ffe9f3;
+      background: #ffe6f2;
+      padding: 6px 0;
       border-radius: 12px;
-      padding: 7px 8px;
       word-break: keep-all;
-      line-height: 1.35;
     }
 
     .profile-page-inner {
       display: grid;
-      grid-template-columns: minmax(320px, 420px) minmax(0, 1fr);
-      gap: 30px;
+      grid-template-columns: minmax(320px, 430px) minmax(0, 1fr);
+      gap: 36px;
       align-items: start;
     }
 
     .profile-side {
       position: sticky;
-      top: calc(var(--header-h) + 36px);
+      top: calc(var(--header-h) + 40px);
       display: grid;
-      gap: 16px;
+      gap: 20px;
     }
 
     .back-btn {
       align-self: flex-start;
-      padding: 11px 18px;
+      padding: 12px 24px;
       border-radius: 999px;
       background: #fff;
-      color: var(--point-dark);
-      border: 2px solid var(--folder-border);
+      border: 3px solid var(--folder-border);
+      color: var(--point);
       font-weight: 900;
-      box-shadow: 0 4px 0 #ffc1dc;
+      box-shadow: 0 4px 0 var(--folder-border);
+      transition: transform 0.1s;
     }
-
     .back-btn:active {
-      transform: translateY(2px);
-      box-shadow: 0 2px 0 #ffc1dc;
+      transform: translateY(4px);
+      box-shadow: 0 0 0 var(--folder-border);
     }
 
     .profile-visual-card {
       background: #fff;
-      border: 3px solid var(--point);
-      border-radius: 28px;
-      padding: 18px;
-      box-shadow: 6px 6px 0 rgba(255, 47, 138, 0.08);
+      border: 4px solid var(--point);
+      border-radius: 32px;
+      padding: 24px;
+      box-shadow: 8px 8px 0px rgba(255, 84, 154, 0.2);
     }
 
     .profile-visual {
       width: 100%;
       aspect-ratio: 2 / 3;
-      border-radius: 18px;
+      border-radius: 20px;
       overflow: hidden;
-      background: #fff;
-      border: 2px dashed #f1b3cf;
+      background: #fdf5ff;
+      border: 3px dashed #ffb3c6;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
+    /* 대망의 변신 버튼 - 단색 디자인 */
     .transform-btn {
       width: 100%;
-      margin-top: 16px;
-      padding: 15px 16px;
-      border-radius: 18px;
+      margin-top: 20px;
+      padding: 18px 16px;
+      border-radius: 20px;
       background: var(--point);
       color: #fff;
-      font-size: 1.1rem;
       font-weight: 900;
-      letter-spacing: 0.06em;
-      box-shadow: 0 8px 20px rgba(255, 47, 138, 0.18);
-      transition: transform 0.18s ease, background 0.18s ease;
+      font-size: 1.2rem;
+      letter-spacing: 0.1em;
+      border: 3px solid #fff;
+      box-shadow: 0 8px 24px rgba(255, 84, 154, 0.4);
+      transition: all 0.2s ease;
     }
-
     .transform-btn:hover {
-      transform: scale(1.02);
+      transform: scale(1.03);
       background: var(--point-dark);
+    }
+    .transform-btn:active {
+      transform: scale(0.95);
     }
 
     .transform-btn.active {
-      background: #ff5fa6;
+      background: var(--magic-blue);
+      box-shadow: 0 8px 24px rgba(102, 204, 255, 0.4);
+    }
+    .transform-btn.active:hover {
+      background: #3399ff;
     }
 
     .profile-detail-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 3px solid #ffb3c6;
+      border-radius: 32px;
+      padding: 30px;
+      box-shadow: inset 0 0 20px #fff5f8;
       min-width: 0;
-      background: rgba(255,255,255,0.95);
-      border: 2px solid var(--card-border);
-      border-radius: 28px;
-      padding: 24px;
     }
 
     .profile-detail-list {
       display: grid;
-      gap: 14px;
+      gap: 16px;
     }
 
     .detail-item {
       display: grid;
-      grid-template-columns: 108px minmax(0, 1fr);
-      gap: 16px;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 20px;
       align-items: start;
-      padding: 14px 0;
-      border-bottom: 2px dashed #f8d2e2;
+      padding: 18px 0;
+      border-bottom: 2px dashed #ffcce0;
     }
 
     .detail-item:last-child {
@@ -449,81 +420,83 @@
       font-weight: 900;
       color: #fff;
       background: var(--point);
-      padding: 6px 12px;
+      padding: 6px 16px;
       border-radius: 12px;
       text-align: center;
+      transform: rotate(-2deg);
     }
 
     .detail-value {
       min-width: 0;
       white-space: pre-wrap;
-      word-break: keep-all;
       line-height: 1.8;
-      color: var(--text);
+      word-break: keep-all;
       font-weight: 700;
-      padding-top: 2px;
+      padding-top: 4px;
     }
 
+    /* 가이드(QnA) 섹션 */
     .guide-wrap {
       display: grid;
-      gap: 26px;
+      gap: 30px;
     }
-
+    
     .section-title {
       margin: 0;
-      font-size: 1.45rem;
-      font-weight: 900;
+      font-size: 1.6rem;
       color: var(--point-dark);
-      padding-bottom: 8px;
-      border-bottom: 2px dashed #f2bfd6;
+      font-weight: 900;
+      padding-bottom: 10px;
+      border-bottom: 3px dashed #ffcce0;
     }
 
-    .guide-list,
-    .reference-list {
+    .guide-list {
       display: grid;
-      gap: 14px;
+      gap: 16px;
     }
 
-    .guide-item,
-    .reference-item {
+    .guide-item {
       background: #fff;
-      border: 2px solid var(--card-border);
-      border-radius: 22px;
-      box-shadow: 0 4px 0 #ffe6f1;
+      border: 3px solid #ffd1dc;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 4px 0 #ffe6f2;
+      transition: all 0.2s ease;
+    }
+    .guide-item:hover {
+      border-color: var(--point);
     }
 
     .guide-question {
       width: 100%;
-      padding: 18px 20px;
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
+      padding: 20px 24px;
       text-align: left;
       font-weight: 900;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: var(--point-dark);
       background: transparent;
     }
 
-    .guide-question .q-text::before {
+    .guide-question span:first-child::before {
       content: "Q. ";
       color: var(--point);
     }
 
-    .guide-arrow {
-      width: 28px;
-      height: 28px;
+    .guide-question span:last-child {
+      font-size: 1.2rem;
+      color: var(--point);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      background: #ffe6f2;
       border-radius: 50%;
-      background: #ffe7f2;
-      color: var(--point-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+      width: 30px; height: 30px;
+      display: flex; align-items: center; justify-content: center;
     }
 
-    .guide-item.open .guide-arrow {
+    .guide-item.open .guide-question span:last-child {
       transform: rotate(90deg);
       background: var(--point);
       color: #fff;
@@ -531,100 +504,70 @@
 
     .guide-answer {
       display: none;
-      padding: 0 20px 20px;
-      color: var(--text-soft);
+      padding: 0 24px 24px;
       line-height: 1.8;
       white-space: pre-wrap;
+      color: var(--ink);
       font-weight: 700;
     }
-
+    
     .guide-item.open .guide-answer {
       display: block;
+      animation: fadeInDown 0.3s ease;
     }
 
+    /* 참고하면 좋은 것들 섹션 */
+    .reference-list {
+      display: grid;
+      gap: 16px;
+    }
     .reference-item {
-      padding: 20px;
+      background: #fff;
+      border: 3px solid #ffd1dc;
+      border-radius: 24px;
+      box-shadow: 0 4px 0 #ffe6f2;
+      padding: 24px;
       line-height: 1.8;
       white-space: pre-wrap;
+      color: var(--ink);
       font-weight: 700;
-      color: var(--text);
+      font-size: 1.05rem;
       word-break: keep-all;
     }
 
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 1200px) {
-      .team-row {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .profile-page-inner {
-        grid-template-columns: 1fr;
-      }
-
-      .profile-side {
-        position: static;
-      }
+      .team-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .profile-page-inner { grid-template-columns: 1fr; }
+      .profile-side { position: static; }
     }
 
     @media (max-width: 760px) {
-      .app {
-        padding: 12px;
-      }
-
-      .folder::before {
-        width: 20px;
-      }
-
-      .header {
-        padding: 20px 16px 0 30px;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .content {
-        padding: 0 14px 14px 30px;
-      }
-
-      .paper {
-        padding: 22px 18px;
-        border-radius: 0 18px 18px 18px;
-      }
-
-      .paper::before {
-        left: 18px;
-      }
-
-      .team-section {
-        padding: 14px;
-      }
-
-      .team-row {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .detail-item {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        padding: 14px;
-        border-radius: 14px;
-        border-bottom: none;
-        background: #fff8fc;
-      }
-
-      .tab-btn {
-        min-width: 112px;
-        padding: 12px 14px 15px;
-      }
+      .app { padding: 16px; }
+      .folder { border-radius: 24px; }
+      .folder::before { width: 20px; }
+      .titlebar { padding: 24px 20px 0px 30px; align-items: flex-start; flex-direction: column; }
+      .content { padding: 0 16px 16px 30px; }
+      .paper { padding: 24px 20px; border-radius: 0 16px 16px 16px; }
+      .team-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+      .detail-item { grid-template-columns: 1fr; gap: 8px; border-bottom: none; background: #fdf5ff; padding: 16px; border-radius: 16px; }
+      .detail-label { align-self: flex-start; transform: none; }
+      .tab-btn { min-width: 110px; padding: 12px 16px 16px; font-size: 1rem; }
     }
   </style>
 </head>
 <body>
   <div class="app">
     <div class="folder">
-      <header class="header">
-        <h1 class="title">우리 동아리 정상운영 합니다!</h1>
-        <nav class="tabs">
-          <button class="tab-btn active" data-target="charactersPage" type="button">캐릭터 소개</button>
-          <button class="tab-btn" data-target="guidePage" type="button">플레이 안내</button>
+      <header class="titlebar">
+        <h1>우리 동아리 정상운영 합니다!</h1>
+        <nav class="index-tabs">
+          <button class="tab-btn active" data-target="charactersPage">캐릭터 소개</button>
+          <button class="tab-btn" data-target="guidePage">플레이 안내</button>
         </nav>
       </header>
 
@@ -662,7 +605,7 @@
               <h2 class="section-title">문제가 생겼어요!</h2>
               <div class="guide-list" id="guideList"></div>
 
-              <h2 class="section-title">참고하면 좋은 것들</h2>
+              <h2 class="section-title" style="margin-top: 10px;">참고하면 좋은 것들</h2>
               <div class="reference-list" id="referenceList"></div>
             </div>
           </div>
@@ -672,23 +615,14 @@
   </div>
 
   <script>
-    /*
-      ==========================
-      수정이 쉬운 구간
-      1) characterData 안의 텍스트/이미지 경로를 바꾸면 캐릭터 정보가 바뀝니다.
-      2) qnaItems: 질문/답변 수정
-      3) referenceItems: 참고사항 수정
-      ==========================
-    */
-
     function makePlaceholder(label, ratio = "square") {
       const width = ratio === "portrait" ? 800 : 800;
       const height = ratio === "portrait" ? 1200 : 800;
       const svg = `
         <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
           <rect width="100%" height="100%" fill="#ffffff"/>
-          <rect x="28" y="28" width="${width - 56}" height="${height - 56}" rx="24" fill="#fff7fb" stroke="#ff2f8a" stroke-width="4" stroke-dasharray="10 10"/>
-          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="42" font-family="Pretendard, Apple SD Gothic Neo, Noto Sans KR, sans-serif" fill="#d9166f" font-weight="700">${label}</text>
+          <rect x="28" y="28" width="${width - 56}" height="${height - 56}" rx="24" fill="#f4efe7" stroke="#496b9f" stroke-width="4" stroke-dasharray="10 10"/>
+          <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" font-size="42" font-family="Pretendard, Apple SD Gothic Neo, Noto Sans KR, sans-serif" fill="#496b9f" font-weight="700">${label}</text>
         </svg>
       `;
       return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
@@ -702,13 +636,11 @@
         name: "이강혁",
         gender: "남",
         age: "19",
-        personality: "팀을 먹여 살리기 위해 일하는 가장 느낌이다. 물론 다른 팀원들도 열심히 하고 있긴 하지만. 다혈질에 직설적이다.",
         feature: "항상 자신이 '마법소년'임을 강조한다. 마법소녀로 착각받으면 짜증나한다.",
         thumb: "KHB_tn.png",
         body: "KHB_wl_coyboyshot.png",
         transform: {
           transformName: "매지컬 앤젤 핑크",
-          personality: "마법소녀의 정석. 명랑하고 상냥하다. 물론 다 연기 중인 성격이다.",
           feature: "최단신에 귀엽다는 이유로 후원기업에서 귀여운 컨셉을 강제했다. 상징적 인물이 필요하기 때문이라고 한다.",
           body: "KHA_wl_coyboyshot.png"
         }
@@ -720,13 +652,11 @@
         name: "유하나",
         gender: "여",
         age: "18",
-        personality: "매우 소심하고 내향적이다. 공감 능력이 뛰어나다.",
         feature: "변신 후에 한 말들 때문에 자주 이불킥을 하고 있다.",
         thumb: "HNB_tn.png",
         body: "HNB_wl_cowboyshot.png",
         transform: {
           transformName: "매지컬 노블 블랙",
-          personality: "나르시시즘의 끝판왕. 여유롭고 능글맞다. 겉으로는.",
           feature: "키가 크다는 이유로 후원기업에서 왕자님 컨셉을 강제했다. 팬 유입이 꽤 잘 되는 모양이다.",
           body: "HNA_wl_coyboyshot.png"
         }
@@ -735,16 +665,14 @@
         id: 3,
         team: 1,
         teamName: "GLOSS",
-        name: "캐릭터 03",
-        gender: "여",
+        name: "박윤우",
+        gender: "남",
         age: "17",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
         feature: "여기에 평상시 특징 설명을 입력하세요.",
         thumb: makePlaceholder("프로필 03"),
         body: makePlaceholder("전신 03", "portrait"),
         transform: {
           transformName: "변신명 03",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
           feature: "여기에 변신 후 특징 설명을 입력하세요.",
           body: makePlaceholder("변신 전신 03", "portrait")
         }
@@ -756,13 +684,11 @@
         name: "캐릭터 04",
         gender: "남",
         age: "18",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
         feature: "여기에 평상시 특징 설명을 입력하세요.",
         thumb: makePlaceholder("프로필 04"),
         body: makePlaceholder("전신 04", "portrait"),
         transform: {
           transformName: "변신명 04",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
           feature: "여기에 변신 후 특징 설명을 입력하세요.",
           body: makePlaceholder("변신 전신 04", "portrait")
         }
@@ -774,13 +700,11 @@
         name: "캐릭터 05",
         gender: "여",
         age: "16",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
         feature: "여기에 평상시 특징 설명을 입력하세요.",
         thumb: makePlaceholder("프로필 05"),
         body: makePlaceholder("전신 05", "portrait"),
         transform: {
           transformName: "변신명 05",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
           feature: "여기에 변신 후 특징 설명을 입력하세요.",
           body: makePlaceholder("변신 전신 05", "portrait")
         }
@@ -792,13 +716,11 @@
         name: "캐릭터 06",
         gender: "남",
         age: "17",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
         feature: "여기에 평상시 특징 설명을 입력하세요.",
         thumb: makePlaceholder("프로필 06"),
         body: makePlaceholder("전신 06", "portrait"),
         transform: {
           transformName: "변신명 06",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
           feature: "여기에 변신 후 특징 설명을 입력하세요.",
           body: makePlaceholder("변신 전신 06", "portrait")
         }
@@ -810,13 +732,11 @@
         name: "캐릭터 07",
         gender: "여",
         age: "17",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
         feature: "여기에 평상시 특징 설명을 입력하세요.",
         thumb: makePlaceholder("프로필 07"),
         body: makePlaceholder("전신 07", "portrait"),
         transform: {
           transformName: "변신명 07",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
           feature: "여기에 변신 후 특징 설명을 입력하세요.",
           body: makePlaceholder("변신 전신 07", "portrait")
         }
@@ -828,13 +748,11 @@
         name: "캐릭터 08",
         gender: "남",
         age: "18",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
         feature: "여기에 평상시 특징 설명을 입력하세요.",
         thumb: makePlaceholder("프로필 08"),
         body: makePlaceholder("전신 08", "portrait"),
         transform: {
           transformName: "변신명 08",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
           feature: "여기에 변신 후 특징 설명을 입력하세요.",
           body: makePlaceholder("변신 전신 08", "portrait")
         }
@@ -846,13 +764,11 @@
         name: "캐릭터 09",
         gender: "여",
         age: "16",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
         feature: "여기에 평상시 특징 설명을 입력하세요.",
         thumb: makePlaceholder("프로필 09"),
         body: makePlaceholder("전신 09", "portrait"),
         transform: {
           transformName: "변신명 09",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
           feature: "여기에 변신 후 특징 설명을 입력하세요.",
           body: makePlaceholder("변신 전신 09", "portrait")
         }
@@ -864,13 +780,11 @@
         name: "캐릭터 10",
         gender: "남",
         age: "17",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
         feature: "여기에 평상시 특징 설명을 입력하세요.",
         thumb: makePlaceholder("프로필 10"),
         body: makePlaceholder("전신 10", "portrait"),
         transform: {
           transformName: "변신명 10",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
           feature: "여기에 변신 후 특징 설명을 입력하세요.",
           body: makePlaceholder("변신 전신 10", "portrait")
         }
@@ -882,13 +796,11 @@
         name: "캐릭터 11",
         gender: "여",
         age: "18",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
         feature: "여기에 평상시 특징 설명을 입력하세요.",
         thumb: makePlaceholder("프로필 11"),
         body: makePlaceholder("전신 11", "portrait"),
         transform: {
           transformName: "변신명 11",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
           feature: "여기에 변신 후 특징 설명을 입력하세요.",
           body: makePlaceholder("변신 전신 11", "portrait")
         }
@@ -900,13 +812,11 @@
         name: "캐릭터 12",
         gender: "남",
         age: "17",
-        personality: "여기에 평상시 성격 설명을 입력하세요.",
         feature: "여기에 평상시 특징 설명을 입력하세요.",
         thumb: makePlaceholder("프로필 12"),
         body: makePlaceholder("전신 12", "portrait"),
         transform: {
           transformName: "변신명 12",
-          personality: "여기에 변신 후 성격 설명을 입력하세요.",
           feature: "여기에 변신 후 특징 설명을 입력하세요.",
           body: makePlaceholder("변신 전신 12", "portrait")
         }
@@ -956,12 +866,8 @@
       });
 
       tabBtns.forEach(btn => {
-        const isCharacterTabActive =
-          pageId === "charactersPage" || pageId === "profilePage";
-        const shouldActivate =
-          (btn.dataset.target === "charactersPage" && isCharacterTabActive) ||
-          btn.dataset.target === pageId;
-
+        const isCharacterTabActive = pageId === "charactersPage" || pageId === "profilePage";
+        const shouldActivate = (btn.dataset.target === "charactersPage" && isCharacterTabActive) || btn.dataset.target === pageId;
         btn.classList.toggle("active", shouldActivate);
       });
 
@@ -1000,7 +906,7 @@
       showPage("charactersPage");
     }
 
-    function renderTeamSection(teamLabel, teamName, teamMembers) {
+    function renderTeamSection(teamName, teamMembers) {
       const cards = teamMembers.map(character => `
         <button class="char-card" type="button" onclick="openProfile(${character.id})">
           <div class="char-thumb">
@@ -1013,7 +919,6 @@
       return `
         <section class="team-section">
           <div class="team-heading">
-            <span class="team-badge">${teamLabel}</span>
             <span class="team-name">${teamName}</span>
           </div>
           <div class="team-row">${cards}</div>
@@ -1026,8 +931,8 @@
       const team2 = characterData.filter(item => item.team === 2);
 
       characterGridWrap.innerHTML = [
-        renderTeamSection("1팀", "GLOSS", team1),
-        renderTeamSection("2팀", "FANG", team2)
+        renderTeamSection("GLOSS", team1),
+        renderTeamSection("FANG", team2)
       ].join("");
     }
 
@@ -1051,7 +956,6 @@
             mainName: character.transform.transformName,
             gender: character.gender,
             age: character.age,
-            personality: character.transform.personality,
             feature: character.transform.feature,
             body: character.transform.body
           }
@@ -1060,7 +964,6 @@
             mainName: character.name,
             gender: character.gender,
             age: character.age,
-            personality: character.personality,
             feature: character.feature,
             body: character.body
           };
@@ -1068,11 +971,11 @@
       profileBodyImage.src = current.body;
       profileBodyImage.alt = `${current.mainName} 전신 사진`;
 
+      // '외관'과 '성격'을 모두 제외한 리스트
       const detailRows = [
         [current.label, current.mainName],
         ["성별", current.gender],
         ["나이", current.age],
-        ["성격", current.personality],
         ["특징", current.feature]
       ];
 
@@ -1110,9 +1013,7 @@
 
     tabBtns.forEach(btn => {
       btn.addEventListener("click", () => {
-        const targetHash = btn.dataset.target === "guidePage"
-          ? "#guide"
-          : "#characters";
+        const targetHash = btn.dataset.target === "guidePage" ? "#guide" : "#characters";
         setRoute(targetHash);
       });
     });
@@ -1120,7 +1021,6 @@
     backBtn.addEventListener("click", () => {
       if (location.hash.startsWith("#character-") && history.length > 1) {
         history.back();
-
         setTimeout(() => {
           if (location.hash.startsWith("#character-")) {
             setRoute("#characters");
